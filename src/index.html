@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>首页 - 现代化网站</title>
+    <meta name="description" content="欢迎访问我们的现代化响应式网站，提供优质的服务和用户体验。">
+    <meta name="keywords" content="现代化网站,响应式设计,用户体验,优质服务">
+    <meta name="author" content="现代化网站">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="首页 - 现代化网站">
+    <meta property="og:description" content="欢迎访问我们的现代化响应式网站，提供优质的服务和用户体验。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://emai2.cn/">
+    <meta property="og:site_name" content="现代化网站">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="首页 - 现代化网站">
+    <meta name="twitter:description" content="欢迎访问我们的现代化响应式网站，提供优质的服务和用户体验。">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="canonical" href="https://emai2.cn/">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/components.css">
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="nav-container" role="banner">
+        <div class="nav-wrapper">
+            <nav class="nav-content" role="navigation" aria-label="主导航">
+                <div class="flex items-center">
+                    <h1 class="logo">现代化网站</h1>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <ul class="desktop-nav" role="menubar">
+                    <li role="none">
+                        <a href="/" class="nav-link active" 
+                           role="menuitem" aria-current="page">首页</a>
+                    </li>
+                    <li role="none">
+                        <a href="./about.html" class="nav-link" 
+                           role="menuitem">关于我们</a>
+                    </li>
+                    <li role="none">
+                        <a href="./services.html" class="nav-link" 
+                           role="menuitem">服务</a>
+                    </li>
+                    <li role="none">
+                        <a href="./contact.html" class="nav-link" 
+                           role="menuitem">联系我们</a>
+                    </li>
+                </ul>
+                
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-button" 
+                        id="mobile-menu-button" aria-expanded="false" aria-controls="mobile-menu" aria-label="打开导航菜单">
+                    <div class="hamburger-icon" id="hamburger-icon">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </div>
+                </button>
+            </nav>
+            
+            <!-- Mobile Navigation Menu -->
+            <div class="mobile-menu hidden" id="mobile-menu" role="menu" aria-labelledby="mobile-menu-button">
+                <div class="mobile-menu-content">
+                    <a href="/" class="mobile-nav-link active" 
+                       role="menuitem" aria-current="page">首页</a>
+                    <a href="./about.html" class="mobile-nav-link" 
+                       role="menuitem">关于我们</a>
+                    <a href="./services.html" class="mobile-nav-link" 
+                       role="menuitem">服务</a>
+                    <a href="./contact.html" class="mobile-nav-link" 
+                       role="menuitem">联系我们</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="flex-1" role="main">
+        <!-- Hero Section -->
+        <section class="hero-section py-20 mb-16" aria-labelledby="hero-title">
+            <canvas id="hero-canvas" class="hero-canvas" aria-hidden="true"></canvas>
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="text-center text-white animate-fade-in-up">
+                    <h2 id="hero-title" class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                        亿麦 · 企业数字化一站式服务
+                    </h2>
+                    <p class="text-xl md:text-2xl mb-8 text-blue-100 max-w-7xl mx-auto leading-relaxed md:whitespace-nowrap">
+                        专注跨境电商与数字化解决方案，提供从咨询到落地的全流程服务，助力品牌提效增长与出海成功
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                        <a href="./about.html" class="btn btn-secondary btn-lg animate-pulse-glow">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                            </svg>
+                            了解更多
+                        </a>
+                        <a href="./contact.html" class="btn btn-outline btn-lg">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                            </svg>
+                            联系我们
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 核心业务 Section -->
+        <section class="container mx-auto px-4 mb-16" aria-labelledby="services-title-home">
+            <div class="text-center mb-12">
+                <h2 id="services-title-home" class="text-4xl font-bold title-gradient mb-4">核心业务</h2>
+                <p class="text-xl subtitle-gradient max-w-3xl mx-auto">围绕企业数字化转型与出海增长，提供八大业务线的端到端服务</p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-8">
+                <article class="feature-card group">
+                    <div class="icon-container icon-container-blue"></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">跨境电商运营</h3>
+                    <ul class="text-gray-600 space-y-1 text-sm">
+                        <li>• Amazon/TikTok 全案、Listing 优化、广告投放</li>
+                        <li>• VAT/品牌备案、店铺诊断、增长方案</li>
+                    </ul>
+                    <div class="mt-4">
+                        <a href="./service-detail.html?k=cross-border" class="btn btn-outline btn-sm">详情</a>
+                    </div>
+                </article>
+                <article class="feature-card group">
+                    <div class="icon-container icon-container-green"></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">微信小程序开发</h3>
+                    <ul class="text-gray-600 space-y-1 text-sm">
+                        <li>• 商城/预约/会员/扫码点餐/B2B 报价</li>
+                        <li>• 源码交付、独立部署、终身免费 BUG 修复</li>
+                    </ul>
+                    <div class="mt-4">
+                        <a href="./service-detail.html?k=miniapp" class="btn btn-outline btn-sm">详情</a>
+                    </div>
+                </article>
+                <article class="feature-card group">
+                    <div class="icon-container icon-container-purple"></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">移动 APP 定制</h3>
+                    <ul class="text-gray-600 space-y-1 text-sm">
+                        <li>• 原生 + Flutter 混合</li>
+                        <li>• 原型 + UI 源文件 + 接口文档 + 上线商店</li>
+                    </ul>
+                    <div class="mt-4">
+                        <a href="./service-detail.html?k=app-dev" class="btn btn-outline btn-sm">详情</a>
+                    </div>
+                </article>
+                <article class="feature-card group">
+                    <div class="icon-container icon-container-red"></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">服务器部署与运维</h3>
+                    <ul class="text-gray-600 space-y-1 text-sm">
+                        <li>• 云选型、环境搭建、监控、备份、故障应急</li>
+                        <li>• 每月运维报表 PDF 推送</li>
+                    </ul>
+                    <div class="mt-4">
+                        <a href="./service-detail.html?k=devops" class="btn btn-outline btn-sm">详情</a>
+                    </div>
+                </article>
+                <article class="feature-card group">
+                    <div class="icon-container icon-container-yellow"></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">企业宽带与网络优化</h3>
+                    <ul class="text-gray-600 space-y-1 text-sm">
+                        <li>• 专线/公网 IP/VPN/SD-WAN 跨境加速</li>
+                        <li>• 故障 4 小时内上门，可用率 ≥ 99.9%</li>
+                    </ul>
+                    <div class="mt-4">
+                        <a href="./service-detail.html?k=network" class="btn btn-outline btn-sm">详情</a>
+                    </div>
+                </article>
+                <article class="feature-card group">
+                    <div class="icon-container icon-container-indigo"></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">设备采购与安装</h3>
+                    <ul class="text-gray-600 space-y-1 text-sm">
+                        <li>• 品牌机/服务器/打印机/扫码枪/监控</li>
+                        <li>• 选型→配送→组网→资产标签→报废回收</li>
+                    </ul>
+                    <div class="mt-4">
+                        <a href="./service-detail.html?k=procurement" class="btn btn-outline btn-sm">详情</a>
+                    </div>
+                </article>
+                <article class="feature-card group">
+                    <div class="icon-container icon-container-blue"></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">网络安全与合规</h3>
+                    <ul class="text-gray-600 space-y-1 text-sm">
+                        <li>• 防火墙/上网行为/入侵检测/漏洞扫描</li>
+                        <li>• 等保 2.0、渗透测试、安全培训</li>
+                    </ul>
+                    <div class="mt-4">
+                        <a href="./service-detail.html?k=security" class="btn btn-outline btn-sm">详情</a>
+                    </div>
+                </article>
+                <article class="feature-card group">
+                    <div class="icon-container icon-container-green"></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">定制软件开发</h3>
+                    <ul class="text-gray-600 space-y-1 text-sm">
+                        <li>• ERP/OA/CRM/进销存/工单/数据中台</li>
+                        <li>• 对接金蝶/用友/SAP/Shopify/Amazon SP-API</li>
+                    </ul>
+                    <div class="mt-4">
+                        <a href="./service-detail.html?k=custom-dev" class="btn btn-outline btn-sm">详情</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer-modern text-white py-12" role="contentinfo">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">现代化网站</h3>
+                    <p class="text-gray-300">提供优质的网站服务和用户体验</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">快速链接</h4>
+                    <nav aria-label="页脚导航">
+                        <ul class="space-y-2">
+                            <li><a href="/" class="text-gray-300 hover:text-white transition-colors duration-200">首页</a></li>
+                            <li><a href="./about.html" class="text-gray-300 hover:text-white transition-colors duration-200">关于我们</a></li>
+                            <li><a href="./services.html" class="text-gray-300 hover:text-white transition-colors duration-200">服务</a></li>
+                            <li><a href="./contact.html" class="text-gray-300 hover:text-white transition-colors duration-200">联系我们</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">联系信息</h4>
+                    <address class="text-gray-300 not-italic">
+                        <p>邮箱: info@example.com</p>
+                        <p>电话: +86 123 4567 8900</p>
+                    </address>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-300">&copy; 2024 现代化网站. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script type="module" src="./js/main.js"></script>
+    <script type="module" src="./js/components.js"></script>
+</body>
+</html>

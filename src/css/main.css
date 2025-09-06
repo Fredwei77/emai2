@@ -1,0 +1,4 @@
+/* 主样式文件 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>联系我们 - 现代化网站</title>
+    <meta name="description" content="联系我们获取专业的网站开发服务。通过联系表单、电话或邮箱与我们取得联系。">
+    <meta name="keywords" content="联系我们,网站开发咨询,技术支持,项目合作,客户服务">
+    <meta name="author" content="现代化网站">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="联系我们 - 现代化网站">
+    <meta property="og:description" content="联系我们获取专业的网站开发服务。通过联系表单、电话或邮箱与我们取得联系。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://emai2.cn/contact.html">
+    <meta property="og:site_name" content="现代化网站">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="联系我们 - 现代化网站">
+    <meta name="twitter:description" content="联系我们获取专业的网站开发服务。通过联系表单、电话或邮箱与我们取得联系。">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="canonical" href="https://emai2.cn/contact.html">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/components.css">
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="nav-container" role="banner">
+        <div class="nav-wrapper">
+            <nav class="nav-content" role="navigation" aria-label="主导航">
+                <div class="flex items-center">
+                    <h1 class="logo">
+                        <a href="/" class="hover:text-blue-600 transition-colors duration-200">现代化网站</a>
+                    </h1>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <ul class="desktop-nav" role="menubar">
+                    <li role="none">
+                        <a href="/" class="nav-link" 
+                           role="menuitem">首页</a>
+                    </li>
+                    <li role="none">
+                        <a href="./about.html" class="nav-link" 
+                           role="menuitem">关于我们</a>
+                    </li>
+                    <li role="none">
+                        <a href="./services.html" class="nav-link" 
+                           role="menuitem">服务</a>
+                    </li>
+                    <li role="none">
+                        <a href="./contact.html" class="nav-link active" 
+                           role="menuitem" aria-current="page">联系我们</a>
+                    </li>
+                </ul>
+                
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-button" 
+                        id="mobile-menu-button" aria-expanded="false" aria-controls="mobile-menu" aria-label="打开导航菜单">
+                    <div class="hamburger-icon" id="hamburger-icon">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </div>
+                </button>
+            </nav>
+            
+            <!-- Mobile Navigation Menu -->
+            <div class="mobile-menu hidden" id="mobile-menu" role="menu" aria-labelledby="mobile-menu-button">
+                <div class="mobile-menu-content">
+                    <a href="/" class="mobile-nav-link" 
+                       role="menuitem">首页</a>
+                    <a href="./about.html" class="mobile-nav-link" 
+                       role="menuitem">关于我们</a>
+                    <a href="./services.html" class="mobile-nav-link" 
+                       role="menuitem">服务</a>
+                    <a href="./contact.html" class="mobile-nav-link active" 
+                       role="menuitem" aria-current="page">联系我们</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="flex-1" role="main">
+        <!-- Page Header -->
+        <section class="hero-section py-16 mb-16" aria-labelledby="page-title">
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="text-center text-white animate-fade-in-up">
+                    <h2 id="page-title" class="text-5xl font-bold mb-6">
+                        <span class="bg-gradient-to-r from-yellow-300 to-pink-300 bg-clip-text text-transparent">
+                            联系我们
+                        </span>
+                    </h2>
+                    <p class="text-xl text-blue-100 max-w-2xl mx-auto">我们很乐意为您提供帮助，请随时与我们联系</p>
+                </div>
+            </div>
+        </section>
+        
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <section class="modern-card p-8" aria-labelledby="form-title">
+                    <div class="text-center mb-8">
+                        <h3 id="form-title" class="text-3xl font-bold title-gradient mb-4">发送消息</h3>
+                        <div class="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full"></div>
+                    </div>
+                
+                <form id="contact-form" class="space-y-6" novalidate>
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                            姓名 <span class="text-red-500" aria-label="必填">*</span>
+                        </label>
+                        <input type="text" 
+                               id="name" 
+                               name="name" 
+                               required 
+                               aria-required="true"
+                               aria-describedby="name-error"
+                               class="input-modern">
+                        <div id="name-error" class="mt-1 text-sm text-red-600 hidden" role="alert"></div>
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                            邮箱 <span class="text-red-500" aria-label="必填">*</span>
+                        </label>
+                        <input type="email" 
+                               id="email" 
+                               name="email" 
+                               required 
+                               aria-required="true"
+                               aria-describedby="email-error"
+                               class="input-modern">
+                        <div id="email-error" class="mt-1 text-sm text-red-600 hidden" role="alert"></div>
+                    </div>
+                    
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
+                            电话 <span class="text-gray-500">(可选)</span>
+                        </label>
+                        <input type="tel" 
+                               id="phone" 
+                               name="phone" 
+                               aria-describedby="phone-error"
+                               class="input-modern">
+                        <div id="phone-error" class="mt-1 text-sm text-red-600 hidden" role="alert"></div>
+                    </div>
+                    
+                    <div>
+                        <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">
+                            主题 <span class="text-red-500" aria-label="必填">*</span>
+                        </label>
+                        <select id="subject" 
+                                name="subject" 
+                                required 
+                                aria-required="true"
+                                aria-describedby="subject-error"
+                                class="input-modern">
+                            <option value="">请选择主题</option>
+                            <option value="website-development">网站开发</option>
+                            <option value="ui-ux-design">UI/UX设计</option>
+                            <option value="technical-consultation">技术咨询</option>
+                            <option value="project-collaboration">项目合作</option>
+                            <option value="other">其他</option>
+                        </select>
+                        <div id="subject-error" class="mt-1 text-sm text-red-600 hidden" role="alert"></div>
+                    </div>
+                    
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
+                            消息内容 <span class="text-red-500" aria-label="必填">*</span>
+                        </label>
+                        <textarea id="message" 
+                                  name="message" 
+                                  rows="5" 
+                                  required 
+                                  aria-required="true"
+                                  aria-describedby="message-error"
+                                  placeholder="请详细描述您的需求或问题..."
+                                  class="input-modern resize-vertical"></textarea>
+                        <div id="message-error" class="mt-1 text-sm text-red-600 hidden" role="alert"></div>
+                    </div>
+                    
+                    <button type="submit" 
+                            class="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed">
+                        <span class="submit-text">发送消息</span>
+                        <span class="loading-text hidden">发送中...</span>
+                    </button>
+                </form>
+                
+                <!-- Success/Error Messages -->
+                <div id="form-success" class="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 hidden" role="alert">
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                        消息发送成功！我们会尽快回复您。
+                    </div>
+                </div>
+                
+                <div id="form-error" class="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 hidden" role="alert">
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                        </svg>
+                        发送失败，请稍后重试或使用其他联系方式。
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Contact Information -->
+            <section class="space-y-8">
+                <!-- Contact Details -->
+                <article class="contact-info-card" aria-labelledby="contact-info-title">
+                    <div class="text-center mb-8">
+                        <h3 id="contact-info-title" class="text-3xl font-bold title-gradient mb-4">联系信息</h3>
+                        <div class="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full"></div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="contact-icon icon-container-blue">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-1">邮箱</h4>
+                                <a href="mailto:info@example.com" class="text-blue-600 hover:text-blue-700 transition-colors duration-200">
+                                    info@example.com
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="contact-icon icon-container-green">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-1">电话</h4>
+                                <a href="tel:+8612345678900" class="text-blue-600 hover:text-blue-700 transition-colors duration-200">
+                                    +86 123 4567 8900
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="contact-icon icon-container-purple">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-1">地址</h4>
+                                <address class="text-gray-600 not-italic">
+                                    北京市朝阳区<br>
+                                    现代化大厦 1001室
+                                </address>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="contact-icon icon-container-yellow">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-1">工作时间</h4>
+                                <p class="text-gray-600">
+                                    周一至周五: 9:00 - 18:00<br>
+                                    周六: 10:00 - 16:00
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- FAQ -->
+                <article class="bg-white rounded-lg shadow-lg p-8" aria-labelledby="faq-title">
+                    <h3 id="faq-title" class="text-2xl font-bold text-gray-900 mb-6">常见问题</h3>
+                    
+                    <div class="space-y-4">
+                        <details class="border-b border-gray-200 pb-4">
+                            <summary class="font-semibold text-gray-900 cursor-pointer hover:text-blue-600 transition-colors duration-200">
+                                项目开发周期一般多长？
+                            </summary>
+                            <p class="mt-2 text-gray-600">
+                                项目周期根据复杂度而定，一般的企业网站需要2-4周，复杂的应用可能需要6-12周。
+                            </p>
+                        </details>
+                        
+                        <details class="border-b border-gray-200 pb-4">
+                            <summary class="font-semibold text-gray-900 cursor-pointer hover:text-blue-600 transition-colors duration-200">
+                                是否提供后期维护服务？
+                            </summary>
+                            <p class="mt-2 text-gray-600">
+                                是的，我们提供完善的后期维护服务，包括内容更新、安全维护和技术支持。
+                            </p>
+                        </details>
+                        
+                        <details class="border-b border-gray-200 pb-4">
+                            <summary class="font-semibold text-gray-900 cursor-pointer hover:text-blue-600 transition-colors duration-200">
+                                如何获取项目报价？
+                            </summary>
+                            <p class="mt-2 text-gray-600">
+                                请通过联系表单详细描述您的需求，我们会在24小时内为您提供详细的项目报价。
+                            </p>
+                        </details>
+                    </div>
+                </article>
+            </section>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer-modern text-white py-12" role="contentinfo">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">现代化网站</h3>
+                    <p class="text-gray-300">提供优质的网站服务和用户体验</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">快速链接</h4>
+                    <nav aria-label="页脚导航">
+                        <ul class="space-y-2">
+                            <li><a href="/" class="text-gray-300 hover:text-white transition-colors duration-200">首页</a></li>
+                            <li><a href="./about.html" class="text-gray-300 hover:text-white transition-colors duration-200">关于我们</a></li>
+                            <li><a href="./services.html" class="text-gray-300 hover:text-white transition-colors duration-200">服务</a></li>
+                            <li><a href="./contact.html" class="text-gray-300 hover:text-white transition-colors duration-200">联系我们</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">联系信息</h4>
+                    <address class="text-gray-300 not-italic">
+                        <p>邮箱: info@example.com</p>
+                        <p>电话: +86 123 4567 8900</p>
+                    </address>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-300">&copy; 2024 现代化网站. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script type="module" src="./js/main.js"></script>
+    <script type="module" src="./js/components.js"></script>
+</body>
+</html>

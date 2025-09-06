@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UI 预览 - 现代化网站</title>
+  <meta name="description" content="网站 UI 组件与版型预览，高保真原型级别，可直接用于开发。">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="./css/main.css" />
+  <link rel="stylesheet" href="./css/components.css" />
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <header class="nav-container">
+    <div class="nav-wrapper">
+      <nav class="nav-content" aria-label="主导航">
+        <h1 class="logo">现代化网站</h1>
+        <ul class="desktop-nav">
+          <li><a class="nav-link" href="/">首页</a></li>
+          <li><a class="nav-link" href="./about.html">关于我们</a></li>
+          <li><a class="nav-link" href="./services.html">服务</a></li>
+          <li><a class="nav-link" href="./contact.html">联系我们</a></li>
+          <li><a class="nav-link active" href="./ui-preview.html">UI 预览</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section" role="main">
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">UI 组件预览</h2>
+        <p class="section-subtitle">以下为常用的按钮、卡片、提醒、表单控件，可直接在页面中复用。</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="card card-hover">
+          <div class="card-body">
+            <div class="badge badge-primary mb-2">按钮</div>
+            <h3 class="card-title">Buttons</h3>
+            <p class="card-subtitle">主按钮、次按钮、描边与幽灵按钮</p>
+            <div class="flex flex-wrap gap-3">
+              <button class="btn btn-primary btn-md">主按钮</button>
+              <button class="btn btn-secondary btn-md">次按钮</button>
+              <button class="btn btn-outline btn-md">描边按钮</button>
+              <button class="btn btn-ghost btn-md">幽灵按钮</button>
+            </div>
+            <div class="divider"></div>
+            <div class="flex flex-wrap gap-3">
+              <button class="btn btn-primary btn-sm">小</button>
+              <button class="btn btn-primary btn-md">中</button>
+              <button class="btn btn-primary btn-lg">大</button>
+              <button class="btn btn-primary btn-icon" aria-label="设置">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8a4 4 0 100 8 4 4 0 000-8z"/><path d="M3.05 13H5a7 7 0 0014 0h1.95M6 6l2.5 2.5M18 6l-2.5 2.5M6 18l2.5-2.5M18 18l-2.5-2.5"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-hover">
+          <div class="card-body">
+            <div class="badge badge-success mb-2">卡片</div>
+            <h3 class="card-title">Cards</h3>
+            <p class="card-subtitle">用于展示内容的容器与布局</p>
+            <div class="grid gap-4">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">基础卡片</h4>
+                  <p class="text-gray-600">用于承载文本、图片与操作区。</p>
+                  <div class="card-actions">
+                    <button class="btn btn-outline btn-sm">了解更多</button>
+                    <button class="btn btn-primary btn-sm">立即使用</button>
+                  </div>
+                </div>
+              </div>
+              <div class="card card-hover">
+                <div class="card-body">
+                  <h4 class="card-title">可交互卡片</h4>
+                  <p class="text-gray-600">悬停时增加阴影与视觉反馈。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-hover">
+          <div class="card-body">
+            <div class="badge badge-warning mb-2">提醒</div>
+            <h3 class="card-title">Alerts</h3>
+            <p class="card-subtitle">用于传达系统状态的反馈信息</p>
+            <div class="space-y-3">
+              <div class="alert alert-info">这是一个信息提示。</div>
+              <div class="alert alert-success">操作已成功完成。</div>
+              <div class="alert alert-warning">请注意，存在潜在风险。</div>
+              <div class="alert alert-error">发生错误，请稍后重试。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-hover md:col-span-2 lg:col-span-1">
+          <div class="card-body">
+            <div class="badge badge-danger mb-2">表单</div>
+            <h3 class="card-title">Forms</h3>
+            <p class="card-subtitle">常用输入控件与状态样式</p>
+
+            <label class="form-label" for="demo-name">姓名</label>
+            <input id="demo-name" class="form-input" placeholder="请输入姓名" />
+            <p class="form-help">用于通信或称呼。</p>
+            <div class="h-4"></div>
+
+            <label class="form-label" for="demo-email">邮箱</label>
+            <input id="demo-email" class="form-input" type="email" placeholder="you@example.com" />
+            <p class="form-error">邮箱格式不正确</p>
+            <div class="h-4"></div>
+
+            <label class="form-label" for="demo-subject">主题</label>
+            <select id="demo-subject" class="form-select">
+              <option>网站开发</option>
+              <option>UI/UX 设计</option>
+              <option>技术咨询</option>
+            </select>
+            <div class="h-4"></div>
+
+            <label class="form-label" for="demo-message">消息</label>
+            <textarea id="demo-message" class="form-textarea" rows="4" placeholder="请描述您的需求"></textarea>
+            <div class="h-4"></div>
+
+            <div class="flex gap-3">
+              <button class="btn btn-outline">取消</button>
+              <button class="btn btn-primary">提交</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <section class="cta">
+        <div class="cta-body">
+          <h3 class="cta-title">准备好使用这些组件了吗？</h3>
+          <p class="cta-subtitle">这些高保真组件可直接在页面中复用，加速开发迭代。</p>
+          <a href="./contact.html" class="btn btn-secondary btn-lg">开始项目</a>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script type="module" src="./js/main.js"></script>
+  <script type="module" src="./js/components.js"></script>
+</body>
+</html>

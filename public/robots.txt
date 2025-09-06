@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://emai2.cn/sitemap.xml

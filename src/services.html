@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>服务 - 现代化网站</title>
+    <meta name="description" content="了解我们提供的专业服务：网站开发、UI/UX设计、响应式设计和技术咨询等。">
+    <meta name="keywords" content="网站开发,UI设计,UX设计,响应式设计,技术咨询,前端开发">
+    <meta name="author" content="现代化网站">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="服务 - 现代化网站">
+    <meta property="og:description" content="了解我们提供的专业服务：网站开发、UI/UX设计、响应式设计和技术咨询等。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://emai2.cn/services.html">
+    <meta property="og:site_name" content="现代化网站">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="服务 - 现代化网站">
+    <meta name="twitter:description" content="了解我们提供的专业服务：网站开发、UI/UX设计、响应式设计和技术咨询等。">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="canonical" href="https://emai2.cn/services.html">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/components.css">
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="nav-container" role="banner">
+        <div class="nav-wrapper">
+            <nav class="nav-content" role="navigation" aria-label="主导航">
+                <div class="flex items-center">
+                    <h1 class="logo">
+                        <a href="/" class="hover:text-blue-600 transition-colors duration-200">现代化网站</a>
+                    </h1>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <ul class="desktop-nav" role="menubar">
+                    <li role="none">
+                        <a href="/" class="nav-link" 
+                           role="menuitem">首页</a>
+                    </li>
+                    <li role="none">
+                        <a href="./about.html" class="nav-link" 
+                           role="menuitem">关于我们</a>
+                    </li>
+                    <li role="none">
+                        <a href="./services.html" class="nav-link active" 
+                           role="menuitem" aria-current="page">服务</a>
+                    </li>
+                    <li role="none">
+                        <a href="./contact.html" class="nav-link" 
+                           role="menuitem">联系我们</a>
+                    </li>
+                </ul>
+                
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-button" 
+                        id="mobile-menu-button" aria-expanded="false" aria-controls="mobile-menu" aria-label="打开导航菜单">
+                    <div class="hamburger-icon" id="hamburger-icon">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </div>
+                </button>
+            </nav>
+            
+            <!-- Mobile Navigation Menu -->
+            <div class="mobile-menu hidden" id="mobile-menu" role="menu" aria-labelledby="mobile-menu-button">
+                <div class="mobile-menu-content">
+                    <a href="/" class="mobile-nav-link" 
+                       role="menuitem">首页</a>
+                    <a href="./about.html" class="mobile-nav-link" 
+                       role="menuitem">关于我们</a>
+                    <a href="./services.html" class="mobile-nav-link active" 
+                       role="menuitem" aria-current="page">服务</a>
+                    <a href="./contact.html" class="mobile-nav-link" 
+                       role="menuitem">联系我们</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="flex-1" role="main">
+        <!-- Page Header -->
+        <section class="hero-section py-16 mb-16" aria-labelledby="page-title">
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="text-center text-white animate-fade-in-up">
+                    <h2 id="page-title" class="text-5xl font-bold mb-6">
+                        <span class="bg-gradient-to-r from-yellow-300 to-pink-300 bg-clip-text text-transparent">
+                            我们的服务
+                        </span>
+                    </h2>
+                    <p class="text-xl text-blue-100 max-w-2xl mx-auto">专业的网站开发和设计服务，助力您的数字化成功</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Services Grid -->
+        <section class="container mx-auto px-4 mb-16" aria-labelledby="services-title">
+            <h3 id="services-title" class="sr-only">服务列表</h3>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <article class="modern-card p-8 group hover:shadow-2xl">
+                    <div class="icon-container icon-container-blue">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">网站开发</h4>
+                <p class="text-gray-600 mb-4">
+                    使用最新的前端技术栈，开发现代化、响应式的网站。
+                    确保代码质量和性能优化。
+                </p>
+                <ul class="text-sm text-gray-500 space-y-1">
+                    <li>• HTML5/CSS3/JavaScript</li>
+                    <li>• 响应式设计</li>
+                    <li>• 性能优化</li>
+                    <li>• SEO优化</li>
+                </ul>
+                <div class="mt-6">
+                    <a class="btn btn-outline btn-sm" href="./service-detail.html?k=web-dev">详情</a>
+                </div>
+            </article>
+            
+                <article class="modern-card p-8 group hover:shadow-2xl">
+                    <div class="icon-container icon-container-green">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-green-600 transition-colors duration-300">UI/UX设计</h4>
+                <p class="text-gray-600 mb-4">
+                    创造直观、美观的用户界面，提供卓越的用户体验。
+                    从用户研究到原型设计的完整流程。
+                </p>
+                <ul class="text-sm text-gray-500 space-y-1">
+                    <li>• 用户体验研究</li>
+                    <li>• 界面设计</li>
+                    <li>• 原型制作</li>
+                    <li>• 可用性测试</li>
+                </ul>
+                <div class="mt-6">
+                    <a class="btn btn-outline btn-sm" href="./service-detail.html?k=uiux">详情</a>
+                </div>
+            </article>
+            
+                <article class="modern-card p-8 group hover:shadow-2xl">
+                    <div class="icon-container icon-container-purple">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors duration-300">响应式设计</h4>
+                <p class="text-gray-600 mb-4">
+                    确保网站在所有设备上都能完美显示，
+                    从手机到桌面电脑的无缝体验。
+                </p>
+                <ul class="text-sm text-gray-500 space-y-1">
+                    <li>• 移动优先设计</li>
+                    <li>• 跨设备兼容</li>
+                    <li>• 触摸友好界面</li>
+                    <li>• 性能优化</li>
+                </ul>
+                <div class="mt-6">
+                    <a class="btn btn-outline btn-sm" href="./service-detail.html?k=responsive">详情</a>
+                </div>
+            </article>
+            
+                <article class="modern-card p-8 group hover:shadow-2xl">
+                    <div class="icon-container icon-container-red">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-red-600 transition-colors duration-300">性能优化</h4>
+                <p class="text-gray-600 mb-4">
+                    通过代码优化、资源压缩等技术手段，
+                    提升网站加载速度和用户体验。
+                </p>
+                <ul class="text-sm text-gray-500 space-y-1">
+                    <li>• 代码压缩</li>
+                    <li>• 图片优化</li>
+                    <li>• 缓存策略</li>
+                    <li>• CDN配置</li>
+                </ul>
+                <div class="mt-6">
+                    <a class="btn btn-outline btn-sm" href="./service-detail.html?k=perf-opt">详情</a>
+                </div>
+            </article>
+            
+                <article class="modern-card p-8 group hover:shadow-2xl">
+                    <div class="icon-container icon-container-yellow">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-yellow-600 transition-colors duration-300">SEO优化</h4>
+                <p class="text-gray-600 mb-4">
+                    提升网站在搜索引擎中的排名，
+                    增加网站的可见性和流量。
+                </p>
+                <ul class="text-sm text-gray-500 space-y-1">
+                    <li>• 关键词优化</li>
+                    <li>• 元标签设置</li>
+                    <li>• 网站地图</li>
+                    <li>• 结构化数据</li>
+                </ul>
+                <div class="mt-6">
+                    <a class="btn btn-outline btn-sm" href="./service-detail.html?k=seo">详情</a>
+                </div>
+            </article>
+            
+                <article class="modern-card p-8 group hover:shadow-2xl">
+                    <div class="icon-container icon-container-indigo">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-indigo-600 transition-colors duration-300">技术咨询</h4>
+                <p class="text-gray-600 mb-4">
+                    提供专业的技术建议和解决方案，
+                    帮助您做出最佳的技术决策。
+                </p>
+                <ul class="text-sm text-gray-500 space-y-1">
+                    <li>• 技术选型</li>
+                    <li>• 架构设计</li>
+                    <li>• 代码审查</li>
+                    <li>• 最佳实践</li>
+                </ul>
+                <div class="mt-6">
+                    <a class="btn btn-outline btn-sm" href="./service-detail.html?k=consulting">详情</a>
+                </div>
+            </article>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="container mx-auto px-4 mb-16">
+            <div class="hero-section rounded-3xl p-12 text-white text-center relative overflow-hidden">
+                <div class="relative z-10">
+                    <h3 class="text-4xl font-bold mb-6">准备开始您的项目？</h3>
+                    <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">联系我们，让我们为您提供专业的服务和解决方案</p>
+                    <a href="./contact.html" class="btn-secondary animate-pulse-glow">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                        </svg>
+                        立即联系我们
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer-modern text-white py-12" role="contentinfo">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">现代化网站</h3>
+                    <p class="text-gray-300">提供优质的网站服务和用户体验</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">快速链接</h4>
+                    <nav aria-label="页脚导航">
+                        <ul class="space-y-2">
+                            <li><a href="/" class="text-gray-300 hover:text-white transition-colors duration-200">首页</a></li>
+                            <li><a href="./about.html" class="text-gray-300 hover:text-white transition-colors duration-200">关于我们</a></li>
+                            <li><a href="./services.html" class="text-gray-300 hover:text-white transition-colors duration-200">服务</a></li>
+                            <li><a href="./contact.html" class="text-gray-300 hover:text-white transition-colors duration-200">联系我们</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">联系信息</h4>
+                    <address class="text-gray-300 not-italic">
+                        <p>邮箱: info@example.com</p>
+                        <p>电话: +86 123 4567 8900</p>
+                    </address>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-300">&copy; 2024 现代化网站. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script type="module" src="./js/main.js"></script>
+    <script type="module" src="./js/components.js"></script>
+</body>
+</html>
