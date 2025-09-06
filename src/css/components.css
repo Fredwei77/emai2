@@ -102,8 +102,14 @@
 
 /* Logo样式 */
 .logo {
-  @apply text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:from-purple-600 hover:to-pink-600 transition-all duration-300;
+  @apply text-2xl font-extrabold text-gray-900 tracking-tight;
 }
+
+/* 品牌样式 */
+.brand { @apply flex items-center gap-3; }
+.brand-logo { width: 34px; height: 34px; border-radius: 0.75rem; display:flex; align-items:center; justify-content:center; background: linear-gradient(135deg, #111827 0%, #1f2937 100%); box-shadow: 0 6px 16px rgba(0,0,0,0.2); }
+.brand-logo-letter { @apply text-white font-extrabold; font-size: 18px; line-height: 1; }
+.brand:hover .brand-logo { transform: translateY(-1px); transition: transform 0.2s ease; }
 
 /* 导航容器样式 */
 .nav-container {
