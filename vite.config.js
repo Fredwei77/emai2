@@ -1,8 +1,5 @@
 import { defineConfig } from 'vite'
-import { resolve, dirname } from 'path'
-import { fileURLToPath } from 'url'
-
-const __dirname = dirname(fileURLToPath(import.meta.url))
+import { resolve } from 'path'
 
 export default defineConfig({
   root: 'src',
@@ -14,15 +11,25 @@ export default defineConfig({
         main: resolve(__dirname, 'src/index.html'),
         about: resolve(__dirname, 'src/about.html'),
         services: resolve(__dirname, 'src/services.html'),
-        contact: resolve(__dirname, 'src/contact.html'),
-        ui: resolve(__dirname, 'src/ui-preview.html'),
-        serviceDetail: resolve(__dirname, 'src/service-detail.html')
+        contact: resolve(__dirname, 'src/contact.html')
       }
     }
   },
   publicDir: '../public',
   server: {
-    port: 3000,
-    open: true
+    port: 3001,
+    strictPort: true,
+    open: true,
+    proxy: {
+      '/.netlify/functions': {
+        target: 'http://localhost:8999',
+        changeOrigin: true
+      },
+      '/api': {
+        target: 'http://localhost:8999',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '/.netlify/functions')
+      }
+    }
   }
 })

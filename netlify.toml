@@ -28,3 +28,15 @@
 #   from = "/404"
 #   to = "/404.html"
 #   status = 404
+
+# Proxy nice /api/* paths to Netlify Functions in prod and dev
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[dev]
+  command = "vite --port 3001"
+  targetPort = 3001
+  port = 8999
+  functions = "netlify/functions"

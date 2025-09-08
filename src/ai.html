@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 智能体 - 现代化网站</title>
+  <meta name="description" content="AI 智能体功能页面，支持输入指令并查看运行结果（演示版）。">
+  <meta name="keywords" content="AI 智能体, Agent, 自动化, 演示">
+  <meta name="author" content="现代化网站">
+  <meta property="og:title" content="AI 智能体 - 现代化网站">
+  <meta property="og:description" content="AI 智能体功能页面，支持输入指令并查看运行结果（演示版）。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://emai2.cn/ai.html">
+  <meta property="og:site_name" content="现代化网站">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="./css/main.css" />
+  <link rel="stylesheet" href="./css/components.css" />
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="nav-container" role="banner">
+    <div class="nav-wrapper">
+      <nav class="nav-content" role="navigation" aria-label="主导航">
+        <div class="flex items-center">
+          <a href="/" class="brand" aria-label="emai 首页">
+            <span class="brand-logo" aria-hidden="true"><span class="brand-logo-letter">e</span></span>
+            <span class="logo">emai</span>
+          </a>
+        </div>
+        <ul class="desktop-nav" role="menubar">
+          <li role="none"><a href="/" class="nav-link" role="menuitem">首页</a></li>
+          <li role="none"><a href="./about.html" class="nav-link" role="menuitem">关于我们</a></li>
+          <li role="none"><a href="./services.html" class="nav-link" role="menuitem">服务</a></li>
+          <li role="none"><a href="./contact.html" class="nav-link" role="menuitem">联系我们</a></li>
+          <li role="none"><a href="./ai.html" class="nav-link active" role="menuitem" aria-current="page">AI 智能体</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-1" role="main">
+    <!-- Hero -->
+    <section class="hero-section py-14 mb-10" aria-labelledby="ai-title">
+      <div class="container mx-auto px-4 text-white">
+        <h1 id="ai-title" class="text-4xl font-bold mb-3">AI 智能体 Chat</h1>
+        <p class="text-blue-100 max-w-3xl">实时资讯 · 整合搜索 · 强大的 AI 营运助手</p>
+      </div>
+    </section>
+
+    <!-- Agent Panel -->
+    <section class="container mx-auto px-4 mb-16">
+      <div class="modern-card p-6">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-4">运行面板</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="md:col-span-2">
+            <div id="agent-messages" class="h-96 overflow-y-auto border border-gray-200 rounded-lg p-4 bg-white space-y-3" aria-live="polite" aria-label="会话消息">
+              <div class="text-gray-500 text-sm">欢迎使用 AI 智能体演示。请输入指令并点击“运行”。</div>
+            </div>
+            <form id="agent-form" class="mt-4 flex flex-wrap gap-3 items-center" aria-label="Agent 指令输入">
+              <input id="agent-input" class="form-input flex-1 min-w-[240px]" placeholder="输入你的指令，例如：分析首页文案优化建议" aria-label="指令" />
+              <label id="agent-image-btn" class="btn btn-outline btn-md cursor-pointer" aria-label="选择图片">
+                <input id="agent-image" type="file" accept="image/*" multiple class="hidden" />
+                添加图片
+              </label>
+              <button id="agent-run" type="submit" class="btn btn-secondary btn-md" aria-label="运行 Agent">
+                <svg class="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7-11-7z"/></svg>
+                运行
+              </button>
+              <button id="agent-stop" type="button" class="btn btn-outline btn-md" aria-label="停止">停止</button>
+              <button id="agent-clear" type="button" class="btn btn-outline btn-md" aria-label="清空">清空</button>
+              <button id="agent-copy" type="button" class="btn btn-outline btn-md" aria-label="复制">复制</button>
+            </form>
+            <div id="agent-image-preview" class="mt-2 flex flex-wrap gap-2" aria-label="已选择的图片预览"></div>
+            </form>
+          </div>
+          <aside>
+            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">说明</h3>
+              <ul class="text-sm text-gray-700 list-disc list-inside space-y-1">
+                <li>演示模式仅在前端模拟消息流。</li>
+                <li>实际接入可配置 API Key、模型、工具权限等。</li>
+                <li>请勿输入敏感数据。</li>
+              </ul>
+              <div class="divider"></div>
+              <h4 class="text-sm font-semibold text-gray-900 mb-1">快速示例</h4>
+              <ul class="text-sm text-gray-700 list-disc list-inside space-y-1">
+                <li>生成网站“关于我们”段落</li>
+                <li>检查 SEO 元信息建议</li>
+                <li>为服务页写 3 条 CTA 方案</li>
+              </ul>
+
+              <div class="divider"></div>
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">模型与参数</h3>
+                <button id="btn-health" type="button" class="btn btn-outline btn-sm" aria-label="检查健康">检查健康</button>
+              </div>
+              <div class="space-y-3">
+                <div>
+                  <label class="form-label" for="model-select">模型</label>
+                  <select id="model-select" class="form-select">
+                    <!-- 模型列表将由前端在运行时通过 /api/models 自动填充 -->
+                    <option value="openai/gpt-4o-mini">OpenAI GPT-4o-mini</option>
+                    <option value="anthropic/claude-3.5-sonnet">Anthropic Claude 3.5 Sonnet</option>
+                  </select>
+                  <p class="form-help">可根据供应商与权限选择不同模型。</p>
+                </div>
+                <div>
+                  <label class="form-label" for="temp-input">temperature 温度 <span id="temp-value" class="text-gray-500">0.7</span></label>
+                  <input id="temp-input" type="range" min="0" max="1" step="0.1" value="0.7" class="w-full" />
+                  <p class="form-help">控制输出随机性，越高越发散（0-1）。</p>
+                </div>
+                <div>
+                  <label class="form-label" for="top-p-input">top_p 采样 <span id="top-p-value" class="text-gray-500">1.0</span></label>
+                  <input id="top-p-input" type="range" min="0" max="1" step="0.1" value="1.0" class="w-full" />
+                  <p class="form-help">核采样阈值（0-1），与温度一般二选一调节。</p>
+                </div>
+                <div>
+                  <label class="form-label" for="max-tokens-input">max_tokens 最大输出</label>
+                  <input id="max-tokens-input" type="number" min="16" max="8192" step="1" value="1024" class="form-input" />
+                  <p class="form-help">限制单次回答的最大 token 数（供应商可能有不同上限）。</p>
+                </div>
+              </div>
+
+             <div class="divider"></div>
+             <h3 class="text-lg font-semibold text-gray-900 mb-2">工具与检索</h3>
+             <div class="space-y-3">
+               <label class="flex items-center gap-2">
+                 <input id="enable-tools" type="checkbox" class="h-4 w-4" />
+                 <span>启用工具调用</span>
+               </label>
+               <div id="tools-panel" class="border border-gray-200 rounded-lg p-3 bg-white space-y-2">
+                 <div class="text-sm text-gray-600">选择可用工具（模型采用 tool_choice=auto 时将按需调用）</div>
+                 <label class="flex items-center gap-2">
+                   <input id="tool-fetch-url-text" type="checkbox" class="h-4 w-4" />
+                   <span>fetch_url_text（抓取网页文本/JSON片段）</span>
+                 </label>
+                 <label class="flex items-center gap-2">
+                   <input id="tool-json-path" type="checkbox" class="h-4 w-4" />
+                   <span>http_get_json_path（GET JSON 并按路径取值）</span>
+                 </label>
+                 <label class="flex items-center gap-2">
+                   <input id="tool-web-search" type="checkbox" class="h-4 w-4" />
+                   <span>web_search（轻量检索）</span>
+                 </label>
+                 <label class="flex items-center gap-2">
+                   <input id="tool-current-time" type="checkbox" class="h-4 w-4" />
+                   <span>current_time（当前时间）</span>
+                 </label>
+
+                 <div class="divider"></div>
+                 <div>
+                   <span class="form-label">工具调用策略 tool_choice</span>
+                   <div class="flex items-center gap-4 text-sm text-gray-700">
+                     <label class="inline-flex items-center gap-1">
+                       <input type="radio" name="tool-choice" value="auto" class="h-4 w-4" checked /> auto
+                     </label>
+                     <label class="inline-flex items-center gap-1">
+                       <input type="radio" name="tool-choice" value="none" class="h-4 w-4" /> none
+                     </label>
+                   </div>
+                   <p class="form-help">选择 auto 允许模型按需使用工具；选择 none 则不使用工具。</p>
+                 </div>
+               </div>
+               <p class="form-help">提示：在生产中可结合域名白名单/超时等策略提升安全性和稳定性。</p>
+             </div>
+           </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer-modern text-white py-12" role="contentinfo">
+    <div class="container mx-auto px-4">
+      <div class="text-center border-t border-gray-700 pt-6">
+        <p class="text-gray-300">© 2025 现代化网站</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="./js/ai.js"></script>
+  <script type="module" src="./js/main.js"></script>
+  <script type="module" src="./js/components.js"></script>
+</body>
+</html>
