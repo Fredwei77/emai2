@@ -141,3 +141,5 @@ HEALTH_BASE_URL=http://localhost:8999 npm run health:once
 - `npm run test:stream`：流式对话端点测试（SSE）
 - `npm run health:once`：健康检查脚本（可配合 `HEALTH_BASE_URL`）
 
+# silver-memory
+ 0c04d779191a52084e27682c4c684d4eb5b4f9bc
