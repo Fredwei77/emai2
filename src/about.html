@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>关于我们 - emai</title>
+    <meta name="description" content="了解emai团队、使命和价值观。我们致力于提供优质的服务和创新的解决方案。">
+    <meta name="keywords" content="关于我们,团队介绍,公司使命,企业价值观,服务理念,emai">
+    <meta name="author" content="emai">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="关于我们 - emai">
+    <meta property="og:description" content="了解emai团队、使命和价值观。我们致力于提供优质的服务和创新的解决方案。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://emai2.cn/about.html">
+    <meta property="og:site_name" content="emai">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="关于我们 - emai">
+    <meta name="twitter:description" content="了解emai团队、使命和价值观。我们致力于提供优质的服务和创新的解决方案。">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="canonical" href="https://emai2.cn/about.html">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/components.css">
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col" data-wechat-kf-url="https://work.weixin.qq.com/">
+    <!-- Header -->
+    <header class="nav-container" role="banner">
+        <div class="nav-wrapper">
+            <nav class="nav-content" role="navigation" aria-label="主导航">
+                <div class="flex items-center">
+                    <a href="/" class="brand" aria-label="emai 首页">
+                        <span class="brand-logo" aria-hidden="true"><span class="brand-logo-letter">e</span></span>
+                        <span class="logo">emai</span>
+                    </a>
+                    <a href="./ai.html" class="ml-3 inline-flex items-center gap-1 px-3 py-1.5 bg-black text-white rounded-md border border-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-sm" aria-label="运行 Agent">
+                      <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7-11-7z"/></svg>
+                      <span>运行 Agent</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <ul class="desktop-nav" role="menubar">
+                    <li role="none">
+                        <a href="/" class="nav-link" 
+                           role="menuitem">首页</a>
+                    </li>
+                    <li role="none">
+                        <a href="./about.html" class="nav-link active" 
+                           role="menuitem" aria-current="page">关于我们</a>
+                    </li>
+                    <li role="none">
+                        <a href="./services.html" class="nav-link" 
+                           role="menuitem">服务</a>
+                    </li>
+                    <li role="none">
+                        <a href="./contact.html" class="nav-link" 
+                           role="menuitem">联系我们</a>
+                    </li>
+                </ul>
+                
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-button" 
+                        id="mobile-menu-button" aria-expanded="false" aria-controls="mobile-menu" aria-label="打开导航菜单">
+                    <div class="hamburger-icon" id="hamburger-icon">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </div>
+                </button>
+            </nav>
+            
+            <!-- Mobile Navigation Menu -->
+            <div class="mobile-menu hidden" id="mobile-menu" role="menu" aria-labelledby="mobile-menu-button">
+                <div class="mobile-menu-content">
+                    <a href="/" class="mobile-nav-link" 
+                       role="menuitem">首页</a>
+                    <a href="./about.html" class="mobile-nav-link active" 
+                       role="menuitem" aria-current="page">关于我们</a>
+                    <a href="./services.html" class="mobile-nav-link" 
+                       role="menuitem">服务</a>
+                    <a href="./contact.html" class="mobile-nav-link" 
+                       role="menuitem">联系我们</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="flex-1" role="main">
+        <!-- Page Header -->
+        <section class="hero-section py-16 mb-16" aria-labelledby="page-title">
+            <canvas id="hero-canvas" class="hero-canvas" aria-hidden="true"></canvas>
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="text-center text-white animate-fade-in-up">
+                    <h1 id="page-title" class="text-5xl font-bold mb-6 title-gradient">
+                        <span class="bg-gradient-to-r from-yellow-300 to-pink-300 bg-clip-text text-transparent">
+                            关于我们
+                        </span>
+                    </h1>
+                    <p class="text-xl text-blue-100 max-w-2xl mx-auto">了解我们的故事、使命和团队</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Company Story -->
+        <section class="container mx-auto px-4 mb-16" aria-labelledby="story-title">
+            <div class="modern-card p-12">
+                <div class="text-center mb-8">
+                    <h3 id="story-title" class="text-4xl font-bold title-gradient mb-4">我们的故事</h3>
+                    <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full"></div>
+                </div>
+                <div class="prose max-w-none text-gray-600 text-lg leading-relaxed">
+                    <p class="mb-6">
+                        我们是一家专注于跨境电商独立站搭建、APP/小程序开发的技术团队。自2012年成立以来，始终围绕"用户体验至上"的理念，以技术创新为引擎，为全球客户提供高价值的数字化解决方案。
+                    </p>
+                    <p class="mb-6">
+                        我们坚信，优秀的网站不仅是视觉盛宴，更是功能完善、性能卓越、用户友好的数字化平台。十一年来，我们已帮助1,200+品牌客户完成从0到1的出海启动、从1到100的持续增长，平均客单价提升32%，复购率提升48%，站点全球访问速度提升60%以上。
+                    </p>
+                    <p class="mb-6">
+                        以用户体验为核心，以技术创新为驱动，不断突破边界，为全球商家打造真正有价值的数字化产品，让"中国品牌，全球无界"。
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Mission & Values -->
+        <section class="container mx-auto px-4 mb-16">
+            <div class="grid md:grid-cols-2 gap-8">
+                <article class="modern-card p-8 group" aria-labelledby="mission-title">
+                    <div class="icon-container icon-container-blue mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 id="mission-title" class="text-3xl font-bold title-gradient mb-6">我们的使命</h3>
+                    <p class="text-gray-600 text-lg leading-relaxed">
+                        通过创新的技术和优秀的设计，帮助客户在数字化时代取得成功。
+                        我们致力于创建既美观又实用的网站，为用户提供卓越的在线体验。
+                    </p>
+                </article>
+                
+                <article class="modern-card p-8 group" aria-labelledby="values-title">
+                    <div class="icon-container icon-container-purple mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 id="values-title" class="text-3xl font-bold title-gradient mb-6">我们的价值观</h3>
+                    <ul class="text-gray-600 text-lg space-y-3">
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mr-3"></span>
+                            用户至上：始终以用户需求为出发点
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mr-3"></span>
+                            品质第一：追求卓越的产品质量
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mr-3"></span>
+                            持续创新：拥抱新技术和新理念
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mr-3"></span>
+                            团队合作：发挥集体智慧的力量
+                        </li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+        
+        <!-- Team Section -->
+        <section class="container mx-auto px-4 mb-16" aria-labelledby="team-title">
+            <div class="text-center mb-12">
+                <h3 id="team-title" class="text-4xl font-bold title-gradient mb-4">我们的团队</h3>
+                <p class="text-xl subtitle-gradient max-w-2xl mx-auto">专业的团队成员，为您提供最优质的服务</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <article class="team-card group">
+                    <div class="team-avatar relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-600 opacity-80"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-white text-2xl font-bold">A</span>
+                        </div>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">Alan</h4>
+                    <p class="text-blue-600 font-semibold mb-3">前端开发工程师</p>
+                    <p class="text-gray-600 leading-relaxed">专注于用户界面设计和前端技术，拥有丰富的现代化网站开发经验</p>
+                </article>
+                
+                <article class="team-card group">
+                    <div class="team-avatar relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-green-400 to-blue-600 opacity-80"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-white text-2xl font-bold">B</span>
+                        </div>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">Bill</h4>
+                    <p class="text-green-600 font-semibold mb-3">UI/UX设计师</p>
+                    <p class="text-gray-600 leading-relaxed">致力于创造优秀的用户体验，擅长将创意转化为直观的设计方案</p>
+                </article>
+                
+                <article class="team-card group">
+                    <div class="team-avatar relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-purple-400 to-pink-600 opacity-80"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-white text-2xl font-bold">S</span>
+                        </div>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-300">Sandra</h4>
+                    <p class="text-purple-600 font-semibold mb-3">项目经理</p>
+                    <p class="text-gray-600 leading-relaxed">确保项目顺利进行和质量控制，协调团队资源实现项目目标</p>
+                </article>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer-modern text-white py-12" role="contentinfo">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="emai-logo-footer mb-4">emai</h3>
+                    <p class="text-gray-300">提供优质的网站服务和用户体验</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">快速链接</h4>
+                    <nav aria-label="页脚导航">
+                        <ul class="space-y-2">
+                            <li><a href="/" class="text-gray-300 hover:text-white transition-colors duration-200">首页</a></li>
+                            <li><a href="./about.html" class="text-gray-300 hover:text-white transition-colors duration-200">关于我们</a></li>
+                            <li><a href="./services.html" class="text-gray-300 hover:text-white transition-colors duration-200">服务</a></li>
+                            <li><a href="./contact.html" class="text-gray-300 hover:text-white transition-colors duration-200">联系我们</a></li>
+                            <li><a href="./terms.html" class="text-gray-300 hover:text-white transition-colors duration-200">服务条款</a></li>
+                            <li><a href="./privacy.html" class="text-gray-300 hover:text-white transition-colors duration-200">隐私政策</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">联系信息</h4>
+                    <address class="text-gray-300 not-italic">
+                        <p>邮箱: 107251567@qq.com</p>
+                        <p>电话/微信: 18665860838</p>
+                    </address>
+                </div>
+                <div class="md:text-right">
+                  <h4 class="text-lg font-semibold mb-4">扫码关注</h4>
+                  <div class="flex flex-wrap items-center gap-6 justify-center md:justify-end">
+                    <div class="text-center md:text-right">
+                      <img src="/Enterprise%20wechat.png" alt="企业微信二维码，使用企业微信扫码联系客服" class="w-24 sm:w-28 md:w-32 h-auto rounded-lg border border-gray-700/50 shadow-md bg-white" loading="lazy">
+                      <div class="text-sm text-gray-300 mt-2">企业微信</div>
+                    </div>
+                    <div class="text-center md:text-right">
+                      <img src="/Wechat%20official%20account.jpg" alt="微信公众号二维码，使用微信扫码关注公众号" class="w-24 sm:w-28 md:w-32 h-auto rounded-lg border border-gray-700/50 shadow-md bg-white" loading="lazy">
+                      <div class="text-sm text-gray-300 mt-2">微信公众号</div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+              <nav aria-label="法律与政策" class="mb-3">
+                <a href="./terms.html" class="text-gray-300 hover:text-white transition-colors duration-200">服务条款</a>
+                <span class="mx-2 text-gray-600">|</span>
+                <a href="./privacy.html" class="text-gray-300 hover:text-white transition-colors duration-200">隐私政策</a>
+              </nav>
+              <p class="text-gray-300 text-sm"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="hover:underline">粤ICP备2024294422号-5</a></p>
+               <p class="text-gray-300">&copy; 2025 深圳亿麦电子商务发展有限公司 2025 版权所有</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script type="module" src="./js/main.js"></script>
+    <script type="module" src="./js/components.js"></script>
+</body>
+</html>
