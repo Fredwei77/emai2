@@ -2,7 +2,7 @@ from openai import OpenAI
 
 client = OpenAI(
   base_url="https://openrouter.ai/api/v1",
-  api_key="<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>",
+  api_key="<>",
 )
 
 completion = client.chat.completions.create(
@@ -61,7 +61,7 @@ cp .env.example .env
 
 编辑 `.env` 文件：
 ```
-OPENROUTER_API_KEY=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
+OPENROUTER_API_KEY=
 ```
 
 ### 3. 启动应用

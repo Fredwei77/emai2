@@ -30,6 +30,10 @@
             <span class="brand-logo" aria-hidden="true"><span class="brand-logo-letter">e</span></span>
             <span class="logo">emai</span>
           </a>
+          <a href="./ai.html" class="ml-3 inline-flex items-center gap-1 px-3 py-1.5 bg-black text-white rounded-md border border-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-sm" aria-label="运行 Agent">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7-11-7z"/></svg>
+            <span>运行 Agent</span>
+          </a>
         </div>
         <ul class="desktop-nav" role="menubar">
           <li role="none"><a href="/" class="nav-link" role="menuitem">首页</a></li>
@@ -59,11 +63,12 @@
   <main class="flex-1" role="main">
     <!-- Hero -->
     <section class="hero-section py-14 mb-12" aria-labelledby="service-title">
+      <canvas id="hero-canvas" class="hero-canvas" aria-hidden="true"></canvas>
       <div class="container mx-auto px-4 relative z-10 text-white">
         <p class="text-blue-100 mb-4"><a href="./services.html" class="underline hover:no-underline">服务</a> / <span id="breadcrumb-name">服务详情</span></p>
-        <h2 id="service-title" class="text-4xl font-bold mb-3">
+        <h1 id="service-title" class="text-4xl font-bold mb-3">
           <span class="bg-gradient-to-r from-yellow-300 to-pink-300 bg-clip-text text-transparent" id="service-name">服务详情</span>
-        </h2>
+        </h1>
         <p id="service-subtitle" class="text-lg text-blue-100 max-w-3xl"></p>
       </div>
     </section>
@@ -111,19 +116,27 @@
               <li><a href="./about.html" class="text-gray-300 hover:text-white transition-colors duration-200">关于我们</a></li>
               <li><a href="./services.html" class="text-gray-300 hover:text-white transition-colors duration-200">服务</a></li>
               <li><a href="./contact.html" class="text-gray-300 hover:text-white transition-colors duration-200">联系我们</a></li>
+              <li><a href="./terms.html" class="text-gray-300 hover:text-white transition-colors duration-200">服务条款</a></li>
+              <li><a href="./privacy.html" class="text-gray-300 hover:text-white transition-colors duration-200">隐私政策</a></li>
             </ul>
           </nav>
         </div>
         <div>
           <h4 class="text-lg font-semibold mb-4">联系信息</h4>
           <address class="text-gray-300 not-italic">
-            <p>邮箱: 107251567@qq.com</p>
+            <p>邮箱: weiyunming@emai2.cn</p>
             <p>电话/微信: 18665860838</p>
           </address>
         </div>
       </div>
       <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-        <p class="text-gray-300">&copy; 2024 现代化网站. 保留所有权利.</p>
+        <nav aria-label="法律与政策" class="mb-3">
+          <a href="./terms.html" class="text-gray-300 hover:text-white transition-colors duration-200">服务条款</a>
+          <span class="mx-2 text-gray-600">|</span>
+          <a href="./privacy.html" class="text-gray-300 hover:text-white transition-colors duration-200">隐私政策</a>
+        </nav>
+        <p class="text-gray-300 text-sm"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="hover:underline">粤ICP备2024294422号-5</a></p>
+         <p class="text-gray-300">&copy; 2025 深圳亿麦电子商务发展有限公司 2025 版权所有</p>
       </div>
     </div>
   </footer>

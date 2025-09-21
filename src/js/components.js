@@ -1,5 +1,310 @@
 // 组件逻辑文件
 
+// -- WeChat/KF floating button --
+(function(){
+  try {
+    const root = document.body;
+    const kfUrl = root?.getAttribute('data-wechat-kf-url') || '';
+    if (!kfUrl) return;
+
+    // inject styles (minimal)
+    const style = document.createElement('style');
+    style.textContent = `
+    .kf-fab{position:fixed;right:16px;bottom:16px;z-index:50;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+    .kf-btn{background:#0A7EFA;color:#fff;border-radius:9999px;padding:10px 14px;display:flex;align-items:center;gap:8px;box-shadow:0 6px 16px rgba(0,0,0,.15);cursor:pointer;border:0;font-size:14px}
+    .kf-btn:hover{background:#066bd3}
+    .kf-drawer{position:fixed;right:16px;bottom:72px;width:360px;max-width:94vw;max-height:70vh;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.12);overflow:hidden;display:none}
+    .kf-drawer.open{display:block}
+    .kf-drawer-header{position:relative;display:grid;grid-template-columns:1fr auto;align-items:center;padding:10px 12px;background:#f8fafc;border-bottom:1px solid #e5e7eb}
+    .kf-drawer-title{font-size:13px;color:#111827}
+    .kf-drawer-actions{display:flex;align-items:center;gap:8px}
+    .kf-drawer-close{background:transparent;border:0;color:#374151;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px}
+    .kf-drawer-close:hover{background:#eef2f7;color:#374151}
+    .kf-drawer-close svg{width:20px;height:20px;display:block}
+
+    /* AI chat widget */
+    .aiw{display:flex;flex-direction:column;height:min(70vh,640px)}
+    .aiw-messages{flex:1;overflow:auto;padding:12px;background:#fff}
+    .aiw-msg{margin-bottom:8px;padding:10px;border-radius:10px;white-space:pre-wrap;line-height:1.5}
+    .aiw-msg-user{background:#e6f0ff;color:#0f172a}
+    .aiw-msg-bot{background:#f3f4f6;color:#111827}
+    .aiw-input{display:flex;gap:8px;padding:10px;border-top:1px solid #e5e7eb;background:#fafafa}
+    .aiw-input input{flex:1;border:1px solid #e5e7eb;border-radius:8px;padding:10px;font-size:14px}
+    .aiw-input button{border:0;border-radius:8px;padding:10px 12px;cursor:pointer;font-size:14px}
+    .aiw-input #aiw-send{background:#0A7EFA;color:#fff}
+    .aiw-input #aiw-send:disabled{opacity:.6;cursor:not-allowed}
+    .aiw-input #aiw-stop{background:#e5e7eb;color:#111827}
+
+    .aiw-toolbar{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-top:1px solid #e5e7eb;background:#fafafa}
+    .aiw-faq{display:flex;flex-wrap:wrap;gap:6px;padding:8px 10px;border-top:1px solid #e5e7eb;background:#fbfbfb}
+    .aiw-faq button{font-size:12px;padding:6px 8px;border:1px solid #e5e7eb;border-radius:999px;background:#fff;cursor:pointer}
+    .aiw-faq button:hover{background:#f3f4f6}
+    .aiw-qr{width:96px;height:auto;border:1px solid #e5e7eb;border-radius:8px;background:#fff;padding:4px;cursor:zoom-in}
+    .aiw-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;z-index:60}
+    .aiw-overlay img{max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+
+    /* Responsive sizing */
+    @media (min-width:1024px){
+      .kf-drawer{right:24px;bottom:80px;width:420px;max-height:75vh}
+    }
+    @media (min-width:1536px){
+      .kf-drawer{width:480px}
+    }
+    @media (max-width:768px){
+      .kf-drawer{right:2vw;bottom:calc(16px + env(safe-area-inset-bottom));left:2vw;width:96vw;max-height:80vh;border-radius:16px}
+      .aiw{height:min(78vh,600px)}
+      .aiw-input input{font-size:16px;padding:12px}
+      .aiw-input button{padding:12px 14px}
+    }
+    @media (max-width:480px){
+      .kf-drawer{left:0;right:0;bottom:calc(8px + env(safe-area-inset-bottom));width:100vw;max-height:88vh;border-radius:16px 16px 0 0}
+      .kf-fab{right:12px;bottom:12px}
+      .aiw{height:min(82vh,640px)}
+    }
+    `
+    document.head.appendChild(style);
+
+    // Additional viewport-aware adjustments for mobile/tablet
+    try {
+      const respStyle = document.createElement('style');
+      respStyle.textContent = `
+      @supports (height: 100dvh) {
+        .aiw{height:min(78dvh,640px)}
+        @media (max-width:480px){ .aiw{height:min(82dvh,640px)} }
+        @media (max-width:768px){ .aiw{height:min(78dvh,600px)} }
+        .kf-drawer{max-height:80dvh}
+        @media (min-width:1024px){ .kf-drawer{max-height:75dvh} }
+        @media (max-width:480px){ .kf-drawer{max-height:88dvh} }
+      }
+      @media (min-width:768px) and (max-width:1023.98px){
+        .kf-drawer{right:24px;bottom:80px;width:440px;max-width:calc(100vw - 48px);max-height:80vh}
+        .aiw{height:min(75vh,640px)}
+      }
+      @media (orientation: landscape) and (max-height:520px){
+        .kf-drawer{max-height:92vh}
+        .aiw{height:min(90vh,520px)}
+      }
+      `;
+      document.head.appendChild(respStyle);
+    } catch {}
+
+    // floating container
+    const fab = document.createElement('div');
+    fab.className = 'kf-fab';
+    fab.innerHTML = `
+      <div class="kf-drawer" id="kf-drawer" role="dialog" aria-label="AI 客服">
+        <div class="kf-drawer-header">
+          <div class="kf-drawer-title">AI 客服</div>
+          <div class="kf-drawer-actions">
+            <button class="kf-drawer-close" id="kf-exit" aria-label="退出">退出</button>
+            <button class="kf-drawer-close" id="kf-close" aria-label="关闭对话框" title="关闭">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 6 L18 18 M6 18 L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="aiw" id="aiw">
+          <div class="aiw-messages" id="aiw-messages" aria-live="polite" aria-busy="false"></div>
+          <div class="aiw-faq" id="aiw-faq">
+            <button data-q="你们提供哪些服务？">你们提供哪些服务？</button>
+            <button data-q="如何获取报价？">如何获取报价？</button>
+            <button data-q="项目周期一般多久？">项目周期一般多久？</button>
+            <button data-q="是否支持后期维护？">是否支持后期维护？</button>
+          </div>
+          <div class="aiw-toolbar">
+            <button id="aiw-human" type="button" title="转人工">转人工</button>
+            <small id="aiw-timer" class="text-gray-500"></small>
+          </div>
+          <div class="aiw-input">
+            <input id="aiw-input" type="text" placeholder="请输入您的问题..." aria-label="AI 客服输入框" />
+            <button id="aiw-stop" type="button">停止</button>
+            <button id="aiw-send" type="button">发送</button>
+          </div>
+        </div>
+      </div>
+      <button class="kf-btn" id="kf-open" aria-haspopup="dialog" aria-controls="kf-drawer" aria-expanded="false">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h16v12H5.17L4 17.17V4zm0-2c-1.1 0-2 .9-2 2v20l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2H4z"></path></svg>
+        <span>AI 客服</span>
+      </button>
+    `;
+    document.body.appendChild(fab);
+
+    const drawer = document.getElementById('kf-drawer');
+    const openBtn = document.getElementById('kf-open');
+    const closeBtn = document.getElementById('kf-close');
+    const exitBtn = document.getElementById('kf-exit');
+
+    function toggle(open){
+      drawer.classList.toggle('open', !!open);
+      openBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    openBtn.addEventListener('click', () => {
+      // 改为内置 AI 客服抽屉
+      toggle(true);
+      try { document.getElementById('aiw-input')?.focus(); } catch {}
+    });
+    closeBtn.addEventListener('click', () => toggle(false));
+    exitBtn?.addEventListener('click', () => { try { clearTimeout(idleTimer); } catch {} drawer.classList.remove('open'); list.innerHTML=''; });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') toggle(false); });
+    // --- AI 客服逻辑 ---
+    const aiw = document.getElementById('aiw');
+    const list = document.getElementById('aiw-messages');
+    const input = document.getElementById('aiw-input');
+    const btnSend = document.getElementById('aiw-send');
+    const btnStop = document.getElementById('aiw-stop');
+
+    let abortCtrl = null;
+    const convo = [];
+    let idleTimer = null; // 3分钟无响应自动关闭
+    let countdown = 0;    // 倒计时秒
+
+    function appendMsg(role, text){
+      const el = document.createElement('div');
+      el.className = 'aiw-msg ' + (role === 'user' ? 'aiw-msg-user' : 'aiw-msg-bot');
+      el.textContent = text;
+      list.appendChild(el);
+      list.scrollTop = list.scrollHeight;
+    }
+
+    function setBusy(b){
+      list?.setAttribute('aria-busy', b ? 'true' : 'false');
+      if (btnSend) btnSend.disabled = !!b;
+      if (btnStop) btnStop.disabled = !b;
+      input?.toggleAttribute?.('disabled', !!b);
+    }
+
+    function resetIdleCountdown() {
+      try { clearTimeout(idleTimer); } catch {}
+      const timerEl = document.getElementById('aiw-timer');
+      countdown = 180; // 3分钟
+      const tick = () => {
+        if (!timerEl) return;
+        if (countdown <= 0) { toggle(false); return; }
+        timerEl.textContent = `将于 ${Math.ceil(countdown)}s 后自动关闭`;
+        countdown -= 1;
+        idleTimer = setTimeout(tick, 1000);
+      };
+      idleTimer = setTimeout(tick, 1000);
+    }
+
+    async function sendChat(text){
+      if (!text) return;
+      appendMsg('user', text);
+      convo.push({ role: 'user', content: text });
+      input.value = '';
+
+      try {
+        setBusy(true);
+        resetIdleCountdown();
+        // 采用流式接口
+        const resp = await fetch('/api/ai-chat/stream', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ messages: convo })
+        });
+        if (!resp.ok || !resp.body) throw new Error(`HTTP ${resp.status}`);
+        const rdr = resp.body.getReader();
+        const dec = new TextDecoder();
+        let acc = '';
+        // 占位的机器人消息
+        appendMsg('assistant', '');
+        const last = list.lastElementChild;
+        while (true) {
+          const { value, done } = await rdr.read();
+          if (done) break;
+          const chunk = dec.decode(value, { stream: true });
+          const parts = chunk.split('\n\n');
+          for (const p of parts) {
+            const line = p.trim();
+            if (!line || !line.startsWith('data:')) continue;
+            const data = line.slice(5).trim();
+            if (data === '[DONE]') continue;
+            try {
+              const j = JSON.parse(data);
+              const delta = j?.choices?.[0]?.delta?.content
+                         ?? j?.choices?.[0]?.message?.content
+                         ?? '';
+              if (delta) {
+                acc += delta;
+                if (last) last.textContent = acc;
+                resetIdleCountdown();
+              }
+            } catch {}
+          }
+        }
+        if (!acc) {
+          // 回退拿最终答案
+          const r2 = await fetch('/api/ai-chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ messages: convo })
+          });
+          const t2 = await r2.text();
+          let j2 = null; try { j2 = JSON.parse(t2); } catch {}
+          const out = j2?.output || '(无输出)';
+          if (last) last.textContent = out;
+          if (j2?.ok) convo.push({ role: 'assistant', content: out });
+        } else {
+          convo.push({ role: 'assistant', content: acc });
+        }
+        resetIdleCountdown();
+      } catch (e) {
+        appendMsg('assistant', '网络异常，请稍后重试');
+      } finally {
+        setBusy(false);
+      }
+    }
+
+    btnSend?.addEventListener('click', () => { resetIdleCountdown(); sendChat((input?.value || '').trim()); });
+    input?.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); resetIdleCountdown(); sendChat((input?.value || '').trim()); } });
+    btnStop?.addEventListener('click', () => { try { abortCtrl?.abort(); } catch {} setBusy(false); resetIdleCountdown(); });
+
+    // FAQ 点击快速提问
+    try {
+      document.getElementById('aiw-faq')?.addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-q]');
+        if (!btn) return;
+        const q = btn.getAttribute('data-q') || '';
+        if (!q) return;
+        input.value = q;
+        resetIdleCountdown();
+        sendChat(q);
+      });
+    } catch {}
+
+    // 转人工入口：跳转微信号 AI_YiMai（深链 + 复制微信号 + 文案提示）
+    document.getElementById('aiw-human')?.addEventListener('click', async () => {
+      const wxId = 'AI_YiMai';
+      const deepLinks = [
+        `weixin://dl/chat?${wxId}`,
+        `weixin://dl/add?${wxId}`
+      ];
+      for (const link of deepLinks) {
+        try { window.location.href = link; break; } catch {}
+      }
+      try { await navigator.clipboard.writeText(wxId); } catch {}
+      // 在对话中插入二维码 + 可放大查看
+      const qr = '/Wechat%20official%20account.jpg';
+      const html = `已尝试打开微信。如未自动跳转，请在微信中搜索添加：<b>${wxId}</b>（微信号已复制）。\n\n点击下方二维码可放大：`;
+      appendMsg('assistant', html.replace(/<[^>]+>/g,'').replace(/\\n/g,'\n'));
+      const img = document.createElement('img');
+      img.src = qr; img.alt = '微信二维码'; img.className = 'aiw-qr';
+      img.addEventListener('click', () => {
+        const ov = document.createElement('div');
+        ov.className = 'aiw-overlay';
+        ov.innerHTML = `<img src="${qr}" alt="微信二维码放大"/>`;
+        ov.addEventListener('click', () => ov.remove());
+        document.body.appendChild(ov);
+      });
+      list.appendChild(img);
+      list.scrollTop = list.scrollHeight;
+    });
+
+  } catch (e) { /* no-op */ }
+})();
+
 /**
  * 移动端导航菜单组件
  */
@@ -230,14 +535,13 @@ class NavigationManager {
 }
 
 /**
- * 联系表单组件：验证与提交
- * - 默认支持客户端验证与用户反馈
- * - 若设置 data-endpoint 或 action，则会以 POST JSON 或常规表单方式提交
+ * 增强版联系表单组件
+ * 功能包括：实时验证、智能提交、用户体验优化、数据持久化
  */
 class ContactForm {
     constructor(selector = '#contact-form') {
         this.form = document.querySelector(selector);
-        if (!this.form) return; // 非联系页无需初始化
+        if (!this.form) return;
 
         // 字段与错误区域
         this.fields = {
@@ -265,62 +569,311 @@ class ContactForm {
         // 配置
         this.endpoint = this.form.getAttribute('data-endpoint') || this.form.getAttribute('action') || '';
         this.method = (this.form.getAttribute('method') || 'POST').toUpperCase();
+        
+        // 状态管理
+        this.isSubmitting = false;
+        this.validationTimeout = null;
+        this.autoSaveTimeout = null;
+        
+        // 初始化
+        this.init();
+    }
 
+    init() {
         this.attachEvents();
+        this.loadDraftData();
+        this.setupAutoSave();
+        this.enhanceAccessibility();
+        this.addProgressIndicator();
     }
 
     attachEvents() {
-        // 输入实时验证
-        ['input', 'change', 'blur'].forEach(evt => {
-            this.form.addEventListener(evt, (e) => {
-                const target = e.target;
-                if (!target || !('id' in target)) return;
-                const id = target.id;
-                if (this.fields[id]) {
-                    this.validateField(id);
-                }
-            }, true);
+        // 实时验证（防抖处理）
+        Object.keys(this.fields).forEach(fieldName => {
+            const field = this.fields[fieldName];
+            if (!field) return;
+
+            // 输入时验证
+            field.addEventListener('input', () => {
+                clearTimeout(this.validationTimeout);
+                this.validationTimeout = setTimeout(() => {
+                    this.validateField(fieldName);
+                    this.updateSubmitButtonState();
+                }, 300);
+            });
+
+            // 失焦时立即验证
+            field.addEventListener('blur', () => {
+                this.validateField(fieldName);
+                this.updateSubmitButtonState();
+            });
+
+            // 聚焦时清除错误状态
+            field.addEventListener('focus', () => {
+                this.clearFieldError(fieldName);
+            });
         });
 
-        // 提交处理
-        this.form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            this.clearAlerts();
+        // 表单提交
+        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
 
-            const valid = this.validateForm();
-            if (!valid) return;
-
-            try {
-                this.setSubmitting(true);
-                const payload = this.getPayload();
-
-                if (this.endpoint) {
-                    // 优先 JSON 提交（若 endpoint 明确），否则遵循原 action 行为
-                    const isJsonEndpoint = this.form.hasAttribute('data-endpoint');
-                    if (isJsonEndpoint) {
-                        await this.postJson(this.endpoint, payload);
-                        this.showSuccess();
-                        this.form.reset();
-                    } else {
-                        // 让浏览器按原表单方式提交（如 Formspree）
-                        this.form.submit();
-                    }
-                } else {
-                    // 无端点：本地模拟成功（可替换为邮件链接或后端集成）
-                    // localStorage 暂存，便于后续后端接入前保留线索
-                    const drafts = JSON.parse(localStorage.getItem('contactFormDrafts') || '[]');
-                    drafts.push({ ...payload, timestamp: new Date().toISOString() });
-                    localStorage.setItem('contactFormDrafts', JSON.stringify(drafts));
-                    this.showSuccess();
-                    this.form.reset();
-                }
-            } catch (err) {
-                console.error('提交失败:', err);
-                this.showError('发送失败，请稍后重试或使用其他联系方式。');
-            } finally {
-                this.setSubmitting(false);
+        // 键盘快捷键
+        this.form.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                e.preventDefault();
+                this.handleSubmit(e);
             }
         });
+    }
+
+    async handleSubmit(e) {
+        e.preventDefault();
+        
+        if (this.isSubmitting) return;
+        
+        this.clearAlerts();
+        
+        // 全面验证
+        const isValid = this.validateForm();
+        if (!isValid) {
+            this.focusFirstError();
+            return;
+        }
+
+        try {
+            this.setSubmitting(true);
+            const payload = this.getPayload();
+            
+            // 添加时间戳和用户代理信息
+            payload.timestamp = new Date().toISOString();
+            payload.userAgent = navigator.userAgent;
+            payload.referrer = document.referrer;
+
+            await this.submitForm(payload);
+            
+            this.showSuccess();
+            this.clearDraftData();
+            this.resetForm();
+            
+        } catch (error) {
+            console.error('表单提交失败:', error);
+            this.showError(this.getErrorMessage(error));
+        } finally {
+            this.setSubmitting(false);
+        }
+    }
+
+    async submitForm(payload) {
+        if (this.endpoint) {
+            // 有端点时提交到服务器
+            const response = await fetch(this.endpoint, {
+                method: this.method,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+
+            return await response.json();
+        } else {
+            // 无端点时的处理方案
+            return this.handleOfflineSubmission(payload);
+        }
+    }
+
+    handleOfflineSubmission(payload) {
+        // 保存到本地存储
+        const submissions = JSON.parse(localStorage.getItem('contactSubmissions') || '[]');
+        submissions.push(payload);
+        localStorage.setItem('contactSubmissions', JSON.stringify(submissions));
+
+        // 尝试发送邮件（如果支持）
+        this.tryEmailSubmission(payload);
+
+        return Promise.resolve({ success: true, offline: true });
+    }
+
+    tryEmailSubmission(payload) {
+        try {
+            const subject = encodeURIComponent(`网站联系表单: ${payload.subject}`);
+            const body = encodeURIComponent(
+                `姓名: ${payload.name}\n` +
+                `邮箱: ${payload.email}\n` +
+                `电话: ${payload.phone || '未提供'}\n` +
+                `主题: ${payload.subject}\n\n` +
+                `消息内容:\n${payload.message}\n\n` +
+                `提交时间: ${new Date(payload.timestamp).toLocaleString()}`
+            );
+            
+            const mailtoLink = `mailto:weiyunming@emai2.cn?subject=${subject}&body=${body}`;
+            
+            // 延迟打开邮件客户端，避免阻塞成功提示
+            setTimeout(() => {
+                window.location.href = mailtoLink;
+            }, 2000);
+        } catch (error) {
+            console.warn('邮件客户端调用失败:', error);
+        }
+    }
+
+    validateForm() {
+        const requiredFields = ['name', 'email', 'subject', 'message'];
+        let isValid = true;
+
+        requiredFields.forEach(fieldName => {
+            if (!this.validateField(fieldName)) {
+                isValid = false;
+            }
+        });
+
+        // 验证可选字段
+        this.validateField('phone');
+
+        return isValid;
+    }
+
+    validateField(fieldName) {
+        const field = this.fields[fieldName];
+        const errorElement = this.errors[fieldName];
+        
+        if (!field || !errorElement) return true;
+
+        const value = field.value.trim();
+        let errorMessage = '';
+
+        switch (fieldName) {
+            case 'name':
+                if (!value) {
+                    errorMessage = '请输入您的姓名';
+                } else if (value.length < 2) {
+                    errorMessage = '姓名至少需要2个字符';
+                } else if (value.length > 50) {
+                    errorMessage = '姓名不能超过50个字符';
+                }
+                break;
+
+            case 'email':
+                if (!value) {
+                    errorMessage = '请输入邮箱地址';
+                } else if (!this.isValidEmail(value)) {
+                    errorMessage = '请输入有效的邮箱地址';
+                }
+                break;
+
+            case 'phone':
+                if (value && !this.isValidPhone(value)) {
+                    errorMessage = '请输入有效的电话号码';
+                }
+                break;
+
+            case 'subject':
+                if (!value) {
+                    errorMessage = '请选择联系主题';
+                }
+                break;
+
+            case 'message':
+                if (!value) {
+                    errorMessage = '请输入消息内容';
+                } else if (value.length < 10) {
+                    errorMessage = '消息内容至少需要10个字符';
+                } else if (value.length > 2000) {
+                    errorMessage = '消息内容不能超过2000个字符';
+                }
+                break;
+        }
+
+        if (errorMessage) {
+            this.showFieldError(fieldName, errorMessage);
+            return false;
+        } else {
+            this.clearFieldError(fieldName);
+            return true;
+        }
+    }
+
+    isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    isValidPhone(phone) {
+        const phoneRegex = /^[\+]?[0-9\s\-\(\)]{7,20}$/;
+        return phoneRegex.test(phone);
+    }
+
+    showFieldError(fieldName, message) {
+        const field = this.fields[fieldName];
+        const errorElement = this.errors[fieldName];
+        
+        if (field && errorElement) {
+            errorElement.textContent = message;
+            errorElement.classList.remove('hidden');
+            field.setAttribute('aria-invalid', 'true');
+            field.classList.add('border-red-500');
+        }
+    }
+
+    clearFieldError(fieldName) {
+        const field = this.fields[fieldName];
+        const errorElement = this.errors[fieldName];
+        
+        if (field && errorElement) {
+            errorElement.textContent = '';
+            errorElement.classList.add('hidden');
+            field.removeAttribute('aria-invalid');
+            field.classList.remove('border-red-500');
+        }
+    }
+
+    focusFirstError() {
+        const firstErrorField = Object.keys(this.fields).find(fieldName => {
+            const errorElement = this.errors[fieldName];
+            return errorElement && !errorElement.classList.contains('hidden');
+        });
+
+        if (firstErrorField && this.fields[firstErrorField]) {
+            this.fields[firstErrorField].focus();
+        }
+    }
+
+    setSubmitting(isSubmitting) {
+        this.isSubmitting = isSubmitting;
+        
+        if (this.submitBtn) {
+            this.submitBtn.disabled = isSubmitting;
+        }
+        
+        if (this.submitText && this.loadingText) {
+            this.submitText.classList.toggle('hidden', isSubmitting);
+            this.loadingText.classList.toggle('hidden', !isSubmitting);
+        }
+
+        // 禁用所有表单字段
+        Object.values(this.fields).forEach(field => {
+            if (field) field.disabled = isSubmitting;
+        });
+    }
+
+    updateSubmitButtonState() {
+        if (!this.submitBtn) return;
+        
+        const hasErrors = Object.keys(this.errors).some(fieldName => {
+            const errorElement = this.errors[fieldName];
+            return errorElement && !errorElement.classList.contains('hidden');
+        });
+
+        const hasRequiredValues = ['name', 'email', 'subject', 'message'].every(fieldName => {
+            const field = this.fields[fieldName];
+            return field && field.value.trim();
+        });
+
+        this.submitBtn.disabled = hasErrors || !hasRequiredValues || this.isSubmitting;
     }
 
     getPayload() {
@@ -333,78 +886,109 @@ class ContactForm {
         };
     }
 
-    async postJson(url, data) {
-        const resp = await fetch(url, {
-            method: this.method || 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
+    // 自动保存草稿
+    setupAutoSave() {
+        Object.values(this.fields).forEach(field => {
+            if (field) {
+                field.addEventListener('input', () => {
+                    clearTimeout(this.autoSaveTimeout);
+                    this.autoSaveTimeout = setTimeout(() => {
+                        this.saveDraftData();
+                    }, 2000);
+                });
+            }
         });
-        if (!resp.ok) {
-            const text = await resp.text().catch(()=>'');
-            throw new Error(`HTTP ${resp.status}: ${text}`);
-        }
-        return resp.json().catch(()=>({ ok: true }));
     }
 
-    setSubmitting(isSubmitting) {
-        if (!this.submitBtn) return;
-        this.submitBtn.disabled = isSubmitting;
-        if (this.submitText && this.loadingText) {
-            this.submitText.classList.toggle('hidden', isSubmitting);
-            this.loadingText.classList.toggle('hidden', !isSubmitting);
+    saveDraftData() {
+        const draftData = this.getPayload();
+        if (Object.values(draftData).some(value => value)) {
+            localStorage.setItem('contactFormDraft', JSON.stringify(draftData));
         }
     }
 
-    validateForm() {
-        const fields = ['name', 'email', 'subject', 'message'];
-        let allValid = true;
-        fields.forEach(f => {
-            const v = this.validateField(f);
-            allValid = allValid && v;
+    loadDraftData() {
+        try {
+            const draftData = localStorage.getItem('contactFormDraft');
+            if (draftData) {
+                const data = JSON.parse(draftData);
+                Object.keys(data).forEach(key => {
+                    const field = this.fields[key];
+                    if (field && data[key]) {
+                        field.value = data[key];
+                    }
+                });
+            }
+        } catch (error) {
+            console.warn('加载草稿数据失败:', error);
+        }
+    }
+
+    clearDraftData() {
+        localStorage.removeItem('contactFormDraft');
+    }
+
+    resetForm() {
+        this.form.reset();
+        Object.keys(this.fields).forEach(fieldName => {
+            this.clearFieldError(fieldName);
         });
-        // 可选字段
-        this.validateField('phone');
-        return allValid;
+        this.updateSubmitButtonState();
     }
 
-    validateField(field) {
-        const el = this.fields[field];
-        const err = this.errors[field];
-        if (!el || !err) return true;
-        let msg = '';
+    enhanceAccessibility() {
+        // 为表单添加更好的可访问性支持
+        this.form.setAttribute('novalidate', 'true');
+        
+        Object.keys(this.fields).forEach(fieldName => {
+            const field = this.fields[fieldName];
+            const errorElement = this.errors[fieldName];
+            
+            if (field && errorElement) {
+                field.setAttribute('aria-describedby', errorElement.id);
+            }
+        });
+    }
 
-        const val = (el.value || '').trim();
-        switch (field) {
-            case 'name':
-                if (!val) msg = '请输入您的姓名';
-                else if (val.length < 2) msg = '姓名至少为2个字符';
-                break;
-            case 'email':
-                if (!val) msg = '请输入邮箱';
-                else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) msg = '邮箱格式不正确';
-                break;
-            case 'subject':
-                if (!val) msg = '请选择主题';
-                break;
-            case 'message':
-                if (!val) msg = '请输入消息内容';
-                else if (val.length < 10) msg = '消息内容至少为10个字符';
-                break;
-            case 'phone':
-                if (val && !/^[0-9+\-()\s]{6,20}$/.test(val)) msg = '电话格式不正确';
-                break;
-        }
+    addProgressIndicator() {
+        // 添加表单填写进度指示器
+        const progressContainer = document.createElement('div');
+        progressContainer.className = 'form-progress mb-4';
+        progressContainer.innerHTML = `
+            <div class="flex justify-between text-sm text-gray-600 mb-2">
+                <span>表单完成度</span>
+                <span class="progress-text">0%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="progress-bar bg-blue-500 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+        `;
+        
+        this.form.insertBefore(progressContainer, this.form.firstChild);
+        
+        this.progressBar = progressContainer.querySelector('.progress-bar');
+        this.progressText = progressContainer.querySelector('.progress-text');
+        
+        // 监听字段变化更新进度
+        Object.values(this.fields).forEach(field => {
+            if (field) {
+                field.addEventListener('input', () => this.updateProgress());
+            }
+        });
+    }
 
-        if (msg) {
-            err.textContent = msg;
-            err.classList.remove('hidden');
-            el.setAttribute('aria-invalid', 'true');
-            return false;
-        } else {
-            err.textContent = '';
-            err.classList.add('hidden');
-            el.removeAttribute('aria-invalid');
-            return true;
+    updateProgress() {
+        const requiredFields = ['name', 'email', 'subject', 'message'];
+        const filledFields = requiredFields.filter(fieldName => {
+            const field = this.fields[fieldName];
+            return field && field.value.trim();
+        });
+        
+        const progress = Math.round((filledFields.length / requiredFields.length) * 100);
+        
+        if (this.progressBar && this.progressText) {
+            this.progressBar.style.width = `${progress}%`;
+            this.progressText.textContent = `${progress}%`;
         }
     }
 
@@ -414,17 +998,35 @@ class ContactForm {
     }
 
     showSuccess() {
-        if (this.successBox) this.successBox.classList.remove('hidden');
+        if (this.successBox) {
+            this.successBox.classList.remove('hidden');
+            this.successBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
         if (this.errorBox) this.errorBox.classList.add('hidden');
     }
 
     showError(message) {
         if (this.errorBox) {
             this.errorBox.classList.remove('hidden');
-            const textNode = this.errorBox.querySelector('.error-text');
-            if (textNode) textNode.textContent = message;
+            const messageElement = this.errorBox.querySelector('.flex div:last-child');
+            if (messageElement) {
+                messageElement.textContent = message;
+            }
+            this.errorBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
         if (this.successBox) this.successBox.classList.add('hidden');
+    }
+
+    getErrorMessage(error) {
+        if (error.message.includes('Failed to fetch')) {
+            return '网络连接失败，请检查网络后重试';
+        } else if (error.message.includes('400')) {
+            return '提交的信息有误，请检查后重试';
+        } else if (error.message.includes('500')) {
+            return '服务器暂时无法处理请求，请稍后重试';
+        } else {
+            return '发送失败，请稍后重试或使用其他联系方式';
+        }
     }
 }
 

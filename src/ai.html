@@ -15,8 +15,13 @@
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="stylesheet" href="./css/main.css" />
   <link rel="stylesheet" href="./css/components.css" />
+  <link rel="canonical" href="https://emai2.cn/ai.html" />
+  <meta property="og:title" content="AI 智能体 - 现代化网站" />
+  <meta property="og:description" content="AI 智能体功能页面，支持输入指令并查看运行结果（演示版）。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://emai2.cn/ai.html" />
 </head>
-<body class="bg-gray-50 min-h-screen flex flex-col">
+<body class="bg-gray-50 min-h-screen flex flex-col" data-wechat-kf-url="https://work.weixin.qq.com/">
   <!-- Header -->
   <header class="nav-container" role="banner">
     <div class="nav-wrapper">
@@ -41,6 +46,7 @@
   <main class="flex-1" role="main">
     <!-- Hero -->
     <section class="hero-section py-14 mb-10" aria-labelledby="ai-title">
+      <canvas id="hero-canvas" class="hero-canvas" aria-hidden="true"></canvas>
       <div class="container mx-auto px-4 text-white">
         <h1 id="ai-title" class="text-4xl font-bold mb-3">AI 智能体 Chat</h1>
         <p class="text-blue-100 max-w-3xl">实时资讯 · 整合搜索 · 强大的 AI 营运助手</p>
@@ -66,7 +72,7 @@
 <p class="text-sm text-gray-500 mb-4">内容由AI生成，请仔细甄别</p>
         <div class="grid md:grid-cols-3 gap-6">
           <div class="md:col-span-2">
-            <div id="agent-messages" class="h-96 overflow-y-auto border border-gray-200 rounded-lg p-4 bg-white space-y-3" aria-live="polite" aria-label="会话消息">
+            <div id="agent-messages" class="agent-messages overflow-y-auto border border-gray-200 rounded-lg p-4 bg-white space-y-3" aria-live="polite" aria-label="会话消息">
               <div class="text-gray-500 text-sm">欢迎使用 AI 智能体演示。请输入指令并点击“运行”。</div>
             </div>
             <form id="agent-form" class="mt-4 flex flex-wrap gap-3 items-center" aria-label="Agent 指令输入">
@@ -84,7 +90,6 @@
               <button id="agent-copy" type="button" class="btn btn-outline btn-md" aria-label="复制">复制</button>
             </form>
             <div id="agent-image-preview" class="mt-2 flex flex-wrap gap-2" aria-label="已选择的图片预览"></div>
-            </form>
           </div>
           <aside>
             <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
@@ -181,12 +186,73 @@
         </div>
       </div>
     </section>
+    <!-- 示例：一键运行 -->
+    <section class="container mx-auto px-4 mb-16" aria-labelledby="examples-title">
+      <div class="modern-card p-6 bg-white border border-gray-200 rounded-lg">
+        <div class="flex items-center justify-between mb-4">
+          <h2 id="examples-title" class="text-2xl font-semibold text-gray-900">示例 · 一键运行</h2>
+          <span class="text-sm text-gray-500">点击示例将自动填充并运行</span>
+        </div>
+        <div id="agent-examples" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <button type="button" class="text-left px-3 py-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition cursor-pointer group" data-prompt="请分析 https://www.emai2.cn 首页文案，提出3条优化建议，输出结构为：问题-建议-示例文案。">
+            <div class="font-medium text-gray-900 group-hover:text-gray-800">分析首页文案并给出优化建议</div>
+            <div class="text-sm text-gray-600 mt-1">基于我们当前主页内容，输出可执行修改点</div>
+          </button>
+
+          <button type="button" class="text-left px-3 py-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition cursor-pointer group" data-prompt="为我们的服务页 https://www.emai2.cn/services.html 生成5条中文号召性语句，每条不超过20字，适合按钮或横幅使用。">
+            <div class="font-medium text-gray-900 group-hover:text-gray-800">生成服务页CTA文案</div>
+            <div class="text-sm text-gray-600 mt-1">短促有力，适合按钮/横幅</div>
+          </button>
+
+          <button type="button" class="text-left px-3 py-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition cursor-pointer group" data-prompt="请为 AI 智能体页面撰写“功能介绍”和“适用场景”两个小节，面向中小企业，200-300字，语气专业友好。">
+            <div class="font-medium text-gray-900 group-hover:text-gray-800">撰写AI智能体功能小节</div>
+            <div class="text-sm text-gray-600 mt-1">面向中小企业的简洁介绍</div>
+          </button>
+
+          <button type="button" class="text-left px-3 py-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition cursor-pointer group" data-prompt="根据 https://www.emai2.cn/contact.html 信息，生成一则客服自动回复模板：包含致谢、工作时间、响应时效、微信添加引导（微信号：AI_YiMai）。">
+            <div class="font-medium text-gray-900 group-hover:text-gray-800">生成客服自动回复模板</div>
+            <div class="text-sm text-gray-600 mt-1">涵盖工作时间与微信引导</div>
+          </button>
+
+          <button type="button" class="text-left px-3 py-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition cursor-pointer group" data-prompt="请基于 https://www.emai2.cn 内容，给出3套SEO元信息方案（title/description/keywords），中文，title不超过30字，description不超过80字。">
+            <div class="font-medium text-gray-900 group-hover:text-gray-800">生成3套SEO元信息</div>
+            <div class="text-sm text-gray-600 mt-1">Title/Description/Keywords</div>
+          </button>
+
+          <button type="button" class="text-left px-3 py-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition cursor-pointer group" data-prompt="请基于 emai 的服务内容，生成10个常见问题（FAQ）及简短回答，每条不超过60字，语气专业可靠。">
+            <div class="font-medium text-gray-900 group-hover:text-gray-800">生成FAQ问答</div>
+            <div class="text-sm text-gray-600 mt-1">常见问题与简短回答</div>
+          </button>
+
+          <button type="button" class="text-left px-3 py-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition cursor-pointer group" data-prompt="请为我们的“关于我们”页撰写一段品牌故事（150-200字），强调现代化、效率与长期价值。">
+            <div class="font-medium text-gray-900 group-hover:text-gray-800">撰写品牌故事</div>
+            <div class="text-sm text-gray-600 mt-1">体现现代化与长期价值</div>
+          </button>
+
+          <button type="button" class="text-left px-3 py-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition cursor-pointer group" data-prompt="根据 https://www.emai2.cn/services.html 的服务范围，输出一份“项目启动清单”，包含需求梳理、时间安排、交付物与验收标准。">
+            <div class="font-medium text-gray-900 group-hover:text-gray-800">生成项目启动清单</div>
+            <div class="text-sm text-gray-600 mt-1">包含交付物与验收标准</div>
+          </button>
+
+          <button type="button" class="text-left px-3 py-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition cursor-pointer group" data-prompt="请综合 https://www.emai2.cn 的定位，给出3个落地活动方案（线上为主），分别包含目标、核心信息、素材创意与简单排期。">
+            <div class="font-medium text-gray-900 group-hover:text-gray-800">输出活动方案（3个）</div>
+            <div class="text-sm text-gray-600 mt-1">目标/信息/素材/排期</div>
+          </button>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer-modern text-white py-12" role="contentinfo">
     <div class="container mx-auto px-4">
       <div class="text-center border-t border-gray-700 pt-6">
-        <p class="text-gray-300">© 2025 现代化网站</p>
+        <nav aria-label="法律与政策" class="mb-3">
+          <a href="./terms.html" class="text-gray-300 hover:text-white transition-colors duration-200">服务条款</a>
+          <span class="mx-2 text-gray-600">|</span>
+          <a href="./privacy.html" class="text-gray-300 hover:text-white transition-colors duration-200">隐私政策</a>
+        </nav>
+        <p class="text-gray-300 text-sm"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="hover:underline">粤ICP备2024294422号-5</a></p>
+         <p class="text-gray-300">© 2025 深圳亿麦电子商务发展有限公司 2025 版权所有</p>
       </div>
     </div>
   </footer>

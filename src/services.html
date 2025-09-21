@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Meta Tags -->
-    <title>服务 - 现代化网站</title>
-    <meta name="description" content="了解我们提供的专业服务：网站开发、UI/UX设计、响应式设计和技术咨询等。">
-    <meta name="keywords" content="网站开发,UI设计,UX设计,响应式设计,技术咨询,前端开发">
-    <meta name="author" content="现代化网站">
+    <title>服务 - emai</title>
+    <meta name="description" content="了解emai提供的专业服务：网站开发、UI/UX设计、响应式设计和技术咨询等。">
+    <meta name="keywords" content="网站开发,UI设计,UX设计,响应式设计,技术咨询,前端开发,emai">
+    <meta name="author" content="emai">
     
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="服务 - 现代化网站">
-    <meta property="og:description" content="了解我们提供的专业服务：网站开发、UI/UX设计、响应式设计和技术咨询等。">
+    <meta property="og:title" content="服务 - emai">
+    <meta property="og:description" content="了解emai提供的专业服务：网站开发、UI/UX设计、响应式设计和技术咨询等。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://emai2.cn/services.html">
-    <meta property="og:site_name" content="现代化网站">
+    <meta property="og:site_name" content="emai">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="服务 - 现代化网站">
-    <meta name="twitter:description" content="了解我们提供的专业服务：网站开发、UI/UX设计、响应式设计和技术咨询等。">
+    <meta name="twitter:title" content="服务 - emai">
+    <meta name="twitter:description" content="了解emai提供的专业服务：网站开发、UI/UX设计、响应式设计和技术咨询等。">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/components.css">
 </head>
-<body class="bg-gray-50 min-h-screen flex flex-col">
+<body class="bg-gray-50 min-h-screen flex flex-col" data-wechat-kf-url="https://work.weixin.qq.com/">
     <!-- Header -->
     <header class="nav-container" role="banner">
         <div class="nav-wrapper">
@@ -39,6 +39,10 @@
                     <a href="/" class="brand" aria-label="emai 首页">
                         <span class="brand-logo" aria-hidden="true"><span class="brand-logo-letter">e</span></span>
                         <span class="logo">emai</span>
+                    </a>
+                    <a href="./ai.html" class="ml-3 inline-flex items-center gap-1 px-3 py-1.5 bg-black text-white rounded-md border border-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-sm" aria-label="运行 Agent">
+                      <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7-11-7z"/></svg>
+                      <span>运行 Agent</span>
                     </a>
                 </div>
                 
@@ -93,13 +97,14 @@
     <main class="flex-1" role="main">
         <!-- Page Header -->
         <section class="hero-section py-16 mb-16" aria-labelledby="page-title">
+            <canvas id="hero-canvas" class="hero-canvas" aria-hidden="true"></canvas>
             <div class="container mx-auto px-4 relative z-10">
                 <div class="text-center text-white animate-fade-in-up">
-                    <h2 id="page-title" class="text-5xl font-bold mb-6">
+                    <h1 id="page-title" class="text-5xl font-bold mb-6">
                         <span class="bg-gradient-to-r from-yellow-300 to-pink-300 bg-clip-text text-transparent">
                             我们的服务
                         </span>
-                    </h2>
+                    </h1>
                     <p class="text-xl text-blue-100 max-w-2xl mx-auto">专业的网站开发和设计服务，助力您的数字化成功</p>
                 </div>
             </div>
@@ -245,11 +250,11 @@
         </section>
         
         <!-- CTA Section -->
-        <section class="container mx-auto px-4 mb-16">
-            <div class="hero-section rounded-3xl p-12 text-white text-center relative overflow-hidden">
-                <div class="relative z-10">
-                    <h3 class="text-4xl font-bold mb-6">准备开始您的项目？</h3>
-                    <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">联系我们，让我们为您提供专业的服务和解决方案</p>
+        <section class="container mx-auto px-4 mt-12 mb-0">
+            <div class="rounded-3xl p-8 sm:p-10 md:p-12 text-white text-center bg-gradient-to-r from-blue-600 to-purple-600">
+                <div>
+                    <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">开始准备您的项目？</h3>
+                    <p class="text-base sm:text-lg md:text-xl text-blue-100 mb-6 md:mb-8 max-w-2xl mx-auto">联系我们，让我们为您提供专业的服务和解决方案</p>
                     <a href="./contact.html" class="btn-secondary animate-pulse-glow">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
@@ -264,9 +269,9 @@
     <!-- Footer -->
     <footer class="footer-modern text-white py-12" role="contentinfo">
         <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">现代化网站</h3>
+                    <h3 class="emai-logo-footer mb-4">emai</h3>
                     <p class="text-gray-300">提供优质的网站服务和用户体验</p>
                 </div>
                 
@@ -278,6 +283,8 @@
                             <li><a href="./about.html" class="text-gray-300 hover:text-white transition-colors duration-200">关于我们</a></li>
                             <li><a href="./services.html" class="text-gray-300 hover:text-white transition-colors duration-200">服务</a></li>
                             <li><a href="./contact.html" class="text-gray-300 hover:text-white transition-colors duration-200">联系我们</a></li>
+                            <li><a href="./terms.html" class="text-gray-300 hover:text-white transition-colors duration-200">服务条款</a></li>
+                            <li><a href="./privacy.html" class="text-gray-300 hover:text-white transition-colors duration-200">隐私政策</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -285,14 +292,33 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">联系信息</h4>
                     <address class="text-gray-300 not-italic">
-                        <p>邮箱: 107251567@qq.com</p>
+                        <p>邮箱: weiyunming@emai2.cn</p>
                         <p>电话/微信: 18665860838</p>
                     </address>
+                </div>
+                <div class="md:text-right">
+                  <h4 class="text-lg font-semibold mb-4">扫码关注</h4>
+                  <div class="flex flex-wrap items-center gap-6 justify-center md:justify-end">
+                    <div class="text-center md:text-right">
+                      <img src="/Enterprise%20wechat.png" alt="企业微信二维码，使用企业微信扫码联系客服" class="w-24 sm:w-28 md:w-32 h-auto rounded-lg border border-gray-700/50 shadow-md bg-white" loading="lazy">
+                      <div class="text-sm text-gray-300 mt-2">企业微信</div>
+                    </div>
+                    <div class="text-center md:text-right">
+                      <img src="/Wechat%20official%20account.jpg" alt="微信公众号二维码，使用微信扫码关注公众号" class="w-24 sm:w-28 md:w-32 h-auto rounded-lg border border-gray-700/50 shadow-md bg-white" loading="lazy">
+                      <div class="text-sm text-gray-300 mt-2">微信公众号</div>
+                    </div>
+                  </div>
                 </div>
             </div>
             
             <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-                <p class="text-gray-300">&copy; 2024 现代化网站. 保留所有权利.</p>
+              <nav aria-label="法律与政策" class="mb-3">
+                <a href="./terms.html" class="text-gray-300 hover:text-white transition-colors duration-200">服务条款</a>
+                <span class="mx-2 text-gray-600">|</span>
+                <a href="./privacy.html" class="text-gray-300 hover:text-white transition-colors duration-200">隐私政策</a>
+              </nav>
+              <p class="text-gray-300 text-sm"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="hover:underline">粤ICP备2024294422号-5</a></p>
+               <p class="text-gray-300">&copy; 2025 深圳亿麦电子商务发展有限公司 2025 版权所有</p>
             </div>
         </div>
     </footer>

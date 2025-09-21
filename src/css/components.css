@@ -1,5 +1,14 @@
 /* 组件样式文件 */
 
+/* AI 运行面板视觉与布局优化 */
+.agent-messages{
+  height: clamp(320px, 60vh, 560px);
+}
+@media (min-width: 1024px){
+  .agent-messages{ height: clamp(420px, 56vh, 640px); }
+}
+
+
 /* 现代化渐变背景 */
 .gradient-bg {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -304,6 +313,36 @@
   @apply bg-white shadow-lg;
 }
 
+/* Textarea 特殊样式 */
+textarea.input-modern {
+  min-height: 120px;
+  line-height: 1.5;
+  font-family: inherit;
+}
+
+.resize-vertical {
+  resize: vertical;
+}
+
+/* 修复 textarea 在某些浏览器中的显示问题 */
+textarea.input-modern::-webkit-scrollbar {
+  width: 8px;
+}
+
+textarea.input-modern::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+textarea.input-modern::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+textarea.input-modern::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
 /* 现代化标题样式 */
 .title-gradient {
   @apply bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent;
@@ -447,6 +486,19 @@
 /* 页脚样式优化 */
 .footer-modern {
   background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+}
+
+/* emai Logo样式 */
+.emai-logo {
+  @apply text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:from-purple-600 hover:to-pink-600 transition-all duration-300;
+  font-family: 'Inter', system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.emai-logo-footer {
+  @apply text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent;
+  font-family: 'Inter', system-ui, sans-serif;
+  letter-spacing: -0.02em;
 }
 
 /* 动画效果 */

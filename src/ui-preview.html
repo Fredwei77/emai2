@@ -8,12 +8,21 @@
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="stylesheet" href="./css/main.css" />
   <link rel="stylesheet" href="./css/components.css" />
+  <link rel="canonical" href="https://emai2.cn/ui-preview.html" />
+  <meta property="og:title" content="UI 预览 - 现代化网站" />
+  <meta property="og:description" content="网站 UI 组件与版型预览，高保真原型级别，可直接用于开发。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://emai2.cn/ui-preview.html" />
 </head>
 <body class="bg-gray-50 min-h-screen">
   <header class="nav-container">
     <div class="nav-wrapper">
       <nav class="nav-content" aria-label="主导航">
         <h1 class="logo">现代化网站</h1>
+        <a href="./ai.html" class="ml-3 inline-flex items-center gap-1 px-3 py-1.5 bg-black text-white rounded-md border border-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-sm" aria-label="运行 Agent">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7-11-7z"/></svg>
+          <span>运行 Agent</span>
+        </a>
         <ul class="desktop-nav">
           <li><a class="nav-link" href="/">首页</a></li>
           <li><a class="nav-link" href="./about.html">关于我们</a></li>
@@ -28,7 +37,7 @@
   <main class="section" role="main">
     <section class="section">
       <div class="section-header">
-        <h2 class="section-title">UI 组件预览</h2>
+        <h1 class="section-title">UI 组件预览</h1>
         <p class="section-subtitle">以下为常用的按钮、卡片、提醒、表单控件，可直接在页面中复用。</p>
       </div>
 
@@ -143,6 +152,20 @@
       </section>
     </section>
   </main>
+
+  <footer class="footer-modern text-white py-12" role="contentinfo">
+    <div class="container mx-auto px-4">
+      <div class="border-t border-gray-700 pt-8 text-center">
+        <nav aria-label="法律与政策" class="mb-3">
+          <a href="./terms.html" class="text-gray-300 hover:text-white transition-colors duration-200">服务条款</a>
+          <span class="mx-2 text-gray-600">|</span>
+          <a href="./privacy.html" class="text-gray-300 hover:text-white transition-colors duration-200">隐私政策</a>
+        </nav>
+        <p class="text-gray-300 text-sm"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="hover:underline">粤ICP备2024294422号-5</a></p>
+         <p class="text-gray-300">&copy; 2025 深圳亿麦电子商务发展有限公司 2025 版权所有</p>
+      </div>
+    </div>
+  </footer>
 
   <script type="module" src="./js/main.js"></script>
   <script type="module" src="./js/components.js"></script>

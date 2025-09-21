@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Meta Tags -->
-    <title>联系我们 - 现代化网站</title>
-    <meta name="description" content="联系我们获取专业的网站开发服务。通过联系表单、电话或邮箱与我们取得联系。">
-    <meta name="keywords" content="联系我们,网站开发咨询,技术支持,项目合作,客户服务">
-    <meta name="author" content="现代化网站">
+    <title>联系我们 - emai</title>
+    <meta name="description" content="联系emai获取专业的网站开发服务。通过联系表单、电话或邮箱与我们取得联系。">
+    <meta name="keywords" content="联系我们,网站开发咨询,技术支持,项目合作,客户服务,emai">
+    <meta name="author" content="emai">
     
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="联系我们 - 现代化网站">
-    <meta property="og:description" content="联系我们获取专业的网站开发服务。通过联系表单、电话或邮箱与我们取得联系。">
+    <meta property="og:title" content="联系我们 - emai">
+    <meta property="og:description" content="联系emai获取专业的网站开发服务。通过联系表单、电话或邮箱与我们取得联系。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://emai2.cn/contact.html">
-    <meta property="og:site_name" content="现代化网站">
+    <meta property="og:site_name" content="emai">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="联系我们 - 现代化网站">
-    <meta name="twitter:description" content="联系我们获取专业的网站开发服务。通过联系表单、电话或邮箱与我们取得联系。">
+    <meta name="twitter:title" content="联系我们 - emai">
+    <meta name="twitter:description" content="联系emai获取专业的网站开发服务。通过联系表单、电话或邮箱与我们取得联系。">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/components.css">
 </head>
-<body class="bg-gray-50 min-h-screen flex flex-col">
+<body class="bg-gray-50 min-h-screen flex flex-col" data-wechat-kf-url="https://work.weixin.qq.com/">
     <!-- Header -->
     <header class="nav-container" role="banner">
         <div class="nav-wrapper">
@@ -39,6 +39,10 @@
                     <a href="/" class="brand" aria-label="emai 首页">
                         <span class="brand-logo" aria-hidden="true"><span class="brand-logo-letter">e</span></span>
                         <span class="logo">emai</span>
+                    </a>
+                    <a href="./ai.html" class="ml-3 inline-flex items-center gap-1 px-3 py-1.5 bg-black text-white rounded-md border border-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-sm" aria-label="运行 Agent">
+                      <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7-11-7z"/></svg>
+                      <span>运行 Agent</span>
                     </a>
                 </div>
                 
@@ -93,13 +97,14 @@
     <main class="flex-1" role="main">
         <!-- Page Header -->
         <section class="hero-section py-16 mb-16" aria-labelledby="page-title">
+            <canvas id="hero-canvas" class="hero-canvas" aria-hidden="true"></canvas>
             <div class="container mx-auto px-4 relative z-10">
                 <div class="text-center text-white animate-fade-in-up">
-                    <h2 id="page-title" class="text-5xl font-bold mb-6">
+                    <h1 id="page-title" class="text-5xl font-bold mb-6">
                         <span class="bg-gradient-to-r from-yellow-300 to-pink-300 bg-clip-text text-transparent">
                             联系我们
                         </span>
-                    </h2>
+                    </h1>
                     <p class="text-xl text-blue-100 max-w-2xl mx-auto">我们很乐意为您提供帮助，请随时与我们联系</p>
                 </div>
             </div>
@@ -114,7 +119,7 @@
                         <div class="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full"></div>
                     </div>
                 
-                <form id="contact-form" class="space-y-6" novalidate>
+                <form id="contact-form" class="space-y-6" novalidate action="/api/send-contact" method="POST" data-endpoint="/api/send-contact" data-skip-enhanced-submit="1">
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
                             姓名 <span class="text-red-500" aria-label="必填">*</span>
@@ -176,24 +181,47 @@
                     </div>
                     
                     <div>
-                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
-                            消息内容 <span class="text-red-500" aria-label="必填">*</span>
-                        </label>
+                        <div class="flex justify-between items-center mb-2">
+                            <label for="message" class="block text-sm font-medium text-gray-700">
+                                消息内容 <span class="text-red-500" aria-label="必填">*</span>
+                            </label>
+                            <span id="message-counter" class="text-xs text-gray-500">0/2000</span>
+                        </div>
                         <textarea id="message" 
                                   name="message" 
-                                  rows="5" 
+                                  rows="6" 
                                   required 
                                   aria-required="true"
-                                  aria-describedby="message-error"
+                                  aria-describedby="message-error message-counter"
                                   placeholder="请详细描述您的需求或问题..."
-                                  class="input-modern resize-vertical"></textarea>
+                                  class="input-modern resize-vertical"
+                                  style="min-height: 120px;"></textarea>
                         <div id="message-error" class="mt-1 text-sm text-red-600 hidden" role="alert"></div>
                     </div>
                     
+                    <!-- 提交提示 -->
+                    <div class="text-xs text-gray-500 mb-4 flex items-center">
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        您的信息将被安全处理，我们承诺保护您的隐私
+                    </div>
+                    
                     <button type="submit" 
-                            class="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed">
-                        <span class="submit-text">发送消息</span>
-                        <span class="loading-text hidden">发送中...</span>
+                            class="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:shadow-lg">
+                        <span class="submit-text flex items-center justify-center">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                            </svg>
+                            发送消息
+                        </span>
+                        <span class="loading-text hidden flex items-center justify-center">
+                            <svg class="animate-spin -ml-1 mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            发送中...
+                        </span>
                     </button>
                 </form>
                 
@@ -235,9 +263,11 @@
                             </div>
                             <div>
                                 <h4 class="font-semibold text-gray-900 mb-1">邮箱</h4>
-                                <a href="mailto:info@example.com" class="text-blue-600 hover:text-blue-700 transition-colors duration-200">
-                                    info@example.com
-                                </a>
+                                <div class="flex items-center gap-2">
+                                    <span id="contact-email" class="select-text text-gray-800">weiyunming@emai2.cn</span>
+                                    <button type="button" id="copy-email-btn" class="btn btn-outline btn-sm" aria-label="复制邮箱">复制</button>
+                                    <span id="copy-email-success" class="text-xs text-green-600 hidden">已复制</span>
+                                </div>
                             </div>
                         </div>
                         
@@ -249,8 +279,8 @@
                             </div>
                             <div>
                                 <h4 class="font-semibold text-gray-900 mb-1">电话</h4>
-                                <a href="tel:+8612345678900" class="text-blue-600 hover:text-blue-700 transition-colors duration-200">
-                                    +86 123 4567 8900
+                                <a href="tel:+8613681961525" class="text-blue-600 hover:text-blue-700 transition-colors duration-200">
+                                    +86 13681961525
                                 </a>
                             </div>
                         </div>
@@ -265,8 +295,8 @@
                             <div>
                                 <h4 class="font-semibold text-gray-900 mb-1">地址</h4>
                                 <address class="text-gray-600 not-italic">
-                                    北京市朝阳区<br>
-                                    现代化大厦 1001室
+                                    上海市嘉定区银翔路819号中暨大厦1508室<br>
+                                    深圳市龙华区民治街道上芬社区西头工业区3号408
                                 </address>
                             </div>
                         </div>
@@ -328,9 +358,9 @@
     <!-- Footer -->
     <footer class="footer-modern text-white py-12" role="contentinfo">
         <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">现代化网站</h3>
+                    <h3 class="emai-logo-footer mb-4">emai</h3>
                     <p class="text-gray-300">提供优质的网站服务和用户体验</p>
                 </div>
                 
@@ -342,6 +372,8 @@
                             <li><a href="./about.html" class="text-gray-300 hover:text-white transition-colors duration-200">关于我们</a></li>
                             <li><a href="./services.html" class="text-gray-300 hover:text-white transition-colors duration-200">服务</a></li>
                             <li><a href="./contact.html" class="text-gray-300 hover:text-white transition-colors duration-200">联系我们</a></li>
+                            <li><a href="./terms.html" class="text-gray-300 hover:text-white transition-colors duration-200">服务条款</a></li>
+                            <li><a href="./privacy.html" class="text-gray-300 hover:text-white transition-colors duration-200">隐私政策</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -349,14 +381,33 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">联系信息</h4>
                     <address class="text-gray-300 not-italic">
-                        <p>邮箱: 107251567@qq.com</p>
-                        <p>电话/微信: 18665860838</p>
+                        <p>邮箱: weiyunming@emai2.cn</p>
+                        <p>电话: +86 13681961525</p>
                     </address>
+                </div>
+                <div class="md:text-right">
+                  <h4 class="text-lg font-semibold mb-4">扫码关注</h4>
+                  <div class="flex flex-wrap items-center gap-6 justify-center md:justify-end">
+                    <div class="text-center md:text-right">
+                      <img src="/Enterprise%20wechat.png" alt="企业微信二维码，使用企业微信扫码联系客服" class="w-24 sm:w-28 md:w-32 h-auto rounded-lg border border-gray-700/50 shadow-md bg-white" loading="lazy">
+                      <div class="text-sm text-gray-300 mt-2">企业微信</div>
+                    </div>
+                    <div class="text-center md:text-right">
+                      <img src="/Wechat%20official%20account.jpg" alt="微信公众号二维码，使用微信扫码关注公众号" class="w-24 sm:w-28 md:w-32 h-auto rounded-lg border border-gray-700/50 shadow-md bg-white" loading="lazy">
+                      <div class="text-sm text-gray-300 mt-2">微信公众号</div>
+                    </div>
+                  </div>
                 </div>
             </div>
             
             <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-                <p class="text-gray-300">&copy; 2024 现代化网站. 保留所有权利.</p>
+              <nav aria-label="法律与政策" class="mb-3">
+                <a href="./terms.html" class="text-gray-300 hover:text-white transition-colors duration-200">服务条款</a>
+                <span class="mx-2 text-gray-600">|</span>
+                <a href="./privacy.html" class="text-gray-300 hover:text-white transition-colors duration-200">隐私政策</a>
+              </nav>
+              <p class="text-gray-300 text-sm"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="hover:underline">粤ICP备2024294422号-5</a></p>
+               <p class="text-gray-300">&copy; 2025 深圳亿麦电子商务发展有限公司 2025 版权所有</p>
             </div>
         </div>
     </footer>
@@ -364,5 +415,6 @@
     <!-- Scripts -->
     <script type="module" src="./js/main.js"></script>
     <script type="module" src="./js/components.js"></script>
+    <script type="module" src="./js/contact-enhancements.js"></script>
 </body>
 </html>

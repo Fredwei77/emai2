@@ -1,5 +1,9 @@
 import { defineConfig } from 'vite'
-import { resolve } from 'path'
+import path, { resolve } from 'path'
+import { fileURLToPath } from 'url'
+
+// __dirname is not available in ESM; derive it from import.meta.url
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
   root: 'src',
@@ -11,7 +15,12 @@ export default defineConfig({
         main: resolve(__dirname, 'src/index.html'),
         about: resolve(__dirname, 'src/about.html'),
         services: resolve(__dirname, 'src/services.html'),
-        contact: resolve(__dirname, 'src/contact.html')
+        contact: resolve(__dirname, 'src/contact.html'),
+        terms: resolve(__dirname, 'src/terms.html'),
+        privacy: resolve(__dirname, 'src/privacy.html'),
+        ai: resolve(__dirname, 'src/ai.html'),
+        serviceDetail: resolve(__dirname, 'src/service-detail.html'),
+        uiPreview: resolve(__dirname, 'src/ui-preview.html')
       }
     }
   },
