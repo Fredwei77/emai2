@@ -10,8 +10,8 @@
 
   // 简单的会话内存
   const convo = [];
-  // 默认模型留空，启动时通过 /api/models 自动选择一个可用的免费模型
-  let DEFAULT_MODEL = '';
+  // 默认模型使用可用的免费模型（可被 /api/models 返回的列表覆盖）
+  let DEFAULT_MODEL = "qwen/qwen3-4b:free";
   let AVAILABLE_MODEL_IDS = new Set();
   // 会话级图像列表（以临时 blob url 预览，同时保留 File 数据以便构建 image_url）
   const sessionImages = [];
@@ -205,6 +205,11 @@
     if (!Array.isArray(models) || models.length === 0) {
       // Local fallback (no server running or no internet). Populate UI with a sensible free list.
       models = [
+        { id: 'qwen/qwen3-4b:free', name: 'Qwen3 4B (free)' },
+        { id: 'qwen/qwen3-235b-a22b:free', name: 'Qwen3 235B A22B (free)' },
+        { id: 'qwen/qwen3-coder:free', name: 'Qwen3 Coder (free)' },
+        { id: 'mistralai/mistral-7b-instruct:free', name: 'Mistral 7B Instruct (free)' },
+        { id: 'mistralai/mistral-small-3.1-24b-instruct:free', name: 'Mistral Small 3.1 24B (free)' },
         { id: 'google/gemini-2.5-flash:free', name: 'Gemini 2.5 Flash (free)' },
         { id: 'google/gemini-2.5-flash-image-preview:free', name: 'Gemini 2.5 Flash Image Preview (free)' }
       ];
@@ -215,7 +220,7 @@
     // Choose default: prefer free models
     const ids = models.map(m => m?.id).filter(Boolean);
     const free = models.filter(m => typeof m?.id === 'string' && m.id.includes(':free'));
-    const pick = free[0]?.id || ids[0] || 'google/gemma-2-2b-it:free';
+    const pick = free[0]?.id || ids[0] || DEFAULT_MODEL;
     DEFAULT_MODEL = pick;
 
     if (modelEl) {

@@ -23,6 +23,11 @@ module.exports = async (req, res) => {
 
     if (!Array.isArray(list) || list.length === 0) {
       list = [
+        { id: 'qwen/qwen3-4b:free', name: 'Qwen3 4B (free)' },
+        { id: 'qwen/qwen3-235b-a22b:free', name: 'Qwen3 235B A22B (free)' },
+        { id: 'qwen/qwen3-coder:free', name: 'Qwen3 Coder (free)' },
+        { id: 'mistralai/mistral-7b-instruct:free', name: 'Mistral 7B Instruct (free)' },
+        { id: 'mistralai/mistral-small-3.1-24b-instruct:free', name: 'Mistral Small 3.1 24B (free)' },
         { id: 'google/gemini-2.5-flash:free', name: 'Gemini 2.5 Flash (free)' },
         { id: 'google/gemini-2.5-flash-image-preview:free', name: 'Gemini 2.5 Flash Image Preview (free)' }
       ];
@@ -31,7 +36,9 @@ module.exports = async (req, res) => {
     res.status(200).json({ ok: true, data: list });
   } catch (err) {
     const list = [
-      { id: 'google/gemma-2-2b-it:free', name: 'Gemma 2 2B IT (free)' },
+      { id: 'qwen/qwen3-4b:free', name: 'Qwen3 4B (free)' },
+      { id: 'qwen/qwen3-coder:free', name: 'Qwen3 Coder (free)' },
+      { id: 'mistralai/mistral-7b-instruct:free', name: 'Mistral 7B Instruct (free)' },
       { id: 'google/gemini-2.5-flash:free', name: 'Gemini 2.5 Flash (free)' },
       { id: 'google/gemini-2.5-flash-image-preview:free', name: 'Gemini 2.5 Flash Image Preview (free)' }
     ];

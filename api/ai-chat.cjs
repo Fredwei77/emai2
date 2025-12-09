@@ -140,10 +140,11 @@ module.exports = async (req, res) => {
     }
 
     const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
+    const defaultModel = process.env.DEFAULT_MODEL || 'qwen/qwen3-4b:free';
     const {
       prompt,
       messages,
-      model = 'google/gemini-2.5-flash-image-preview:free',
+      model = defaultModel,
       temperature,
       top_p,
       max_tokens,
